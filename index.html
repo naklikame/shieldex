@@ -657,6 +657,58 @@ footer{
 @keyframes panel-img-in{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1)}}
 .uc2-panel.active .uc2-gen-img{animation:panel-img-in .55s cubic-bezier(.22,1,.36,1) both}
 
+/* ── BENTO V2 FEATURES ── */
+.bv2-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:2.5rem}
+.bv2-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:24px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.05);transition:box-shadow .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1)}
+.bv2-card:hover{box-shadow:0 10px 40px rgba(0,0,0,.1);transform:translateY(-3px)}
+.bv2-illu{background:#F7F8FC;padding:28px;min-height:260px;display:flex;align-items:flex-start;justify-content:center;position:relative;overflow:hidden}
+.bv2-illu::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.055) 1px,transparent 1px);background-size:22px 22px;pointer-events:none;z-index:0}
+.bv2-body{padding:22px 26px 26px;border-top:1px solid rgba(0,0,0,.06)}
+.bv2-eyebrow{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--primary);margin-bottom:7px}
+.bv2-title{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.35}
+.bv2-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+/* call card */
+.bv2-call-card{background:#fff;border-radius:16px;padding:14px 16px;border:1px solid rgba(0,0,0,.07);box-shadow:0 4px 20px rgba(0,0,0,.07);width:100%;position:relative;z-index:1}
+.bv2-call-hdr{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.bv2-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:700;flex-shrink:0}
+.bv2-wave{display:flex;align-items:center;justify-content:center;gap:2.5px;padding:8px 0;height:40px}
+.bv2-wave-bar{width:3px;border-radius:2px;background:var(--primary);animation:wave-bounce .9s ease-in-out infinite}
+.bv2-chat{display:flex;flex-direction:column;gap:5px}
+.bv2-bubble{border-radius:10px;padding:7px 11px;font-size:.72rem;line-height:1.45;max-width:88%}
+.bv2-bubble-ai{background:#F1F5F9;color:var(--dark);border-radius:10px 10px 10px 2px;align-self:flex-start}
+.bv2-bubble-user{background:#EEF2FF;color:var(--primary);border-radius:10px 10px 2px 10px;align-self:flex-end}
+/* flow */
+.bv2-flow{display:flex;align-items:center;gap:5px;justify-content:center;flex-wrap:nowrap;position:relative;z-index:1;width:100%;margin-bottom:12px}
+.bv2-flow-step{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.bv2-flow-ico{width:40px;height:40px;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06);flex-shrink:0}
+.bv2-flow-lbl{font-size:.58rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.bv2-flow-arr{color:#CBD5E1;font-size:1rem;flex-shrink:0;margin-top:-10px}
+.bv2-seq{background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.07);overflow:hidden;position:relative;z-index:1;width:100%}
+.bv2-seq-row{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.05)}
+.bv2-seq-row:last-child{border-bottom:none}
+.bv2-seq-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;flex-shrink:0}
+/* reaktivace */
+.bv2-stat-hero{text-align:center;margin-bottom:12px;position:relative;z-index:1;width:100%}
+.bv2-stat-num{font-size:2.4rem;font-weight:800;color:var(--dark);line-height:1;letter-spacing:-.03em}
+.bv2-stat-sub{font-size:.7rem;color:var(--muted);margin-top:2px}
+.bv2-mini-stats{display:flex;gap:6px;margin-bottom:12px;position:relative;z-index:1;width:100%}
+.bv2-mini-cell{flex:1;border-radius:10px;padding:9px;text-align:center}
+.bv2-mini-num{font-size:1.05rem;font-weight:700;line-height:1}
+.bv2-mini-lbl{font-size:.62rem;color:var(--muted);margin-top:2px;font-weight:500}
+.bv2-contacts{background:#fff;border-radius:12px;border:1px solid rgba(0,0,0,.07);overflow:hidden;position:relative;z-index:1;width:100%}
+.bv2-contact-row{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.05)}
+.bv2-contact-row:last-child{border-bottom:none}
+.bv2-contact-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.63rem;font-weight:700;flex-shrink:0}
+.bv2-badge-ok{font-size:.62rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 7px;border-radius:20px;margin-left:auto;white-space:nowrap}
+.bv2-badge-sleep{font-size:.62rem;font-weight:700;color:#64748B;background:#F1F5F9;padding:2px 7px;border-radius:20px;margin-left:auto;white-space:nowrap}
+/* missed call */
+.bv2-notif-card{background:#fff;border-radius:14px;padding:12px 14px;border:1px solid rgba(0,0,0,.07);box-shadow:0 4px 16px rgba(0,0,0,.07);margin-bottom:10px;position:relative;z-index:1;width:100%;max-width:280px}
+.bv2-missed-ico{width:36px;height:36px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bv2-sms-card{background:#fff;border-radius:14px;padding:14px;border:1px solid rgba(0,0,0,.07);box-shadow:0 4px 16px rgba(0,0,0,.07);position:relative;z-index:1;width:100%;max-width:280px}
+.bv2-sms-bubble{background:#F1F5F9;border-radius:10px;padding:10px 12px;font-size:.72rem;color:var(--dark);line-height:1.5;margin:8px 0}
+.bv2-speed{display:flex;align-items:center;gap:4px;font-size:.67rem;color:#16A34A;font-weight:600}
+@media(max-width:768px){.bv2-grid{grid-template-columns:1fr}.bv2-flow{flex-wrap:wrap;gap:10px}.bv2-flow-arr{display:none}}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .feat-grid,.pricing-grid{grid-template-columns:1fr 1fr}
@@ -1015,332 +1067,190 @@ footer{
       <p class="section-sub">Nainstalujeme vám automatizovaný systém, který okamžitě odpovídá zákazníkům, reaktivuje vaši starou databázi a zastoupí recepční. Pracuje 24/7, nechce výplatu a nikdy nespí.</p>
     </div>
 
-    <!-- Tab bar -->
-    <div class="uc2-tabbar fade-up">
-      <button class="uc2-tab active" onclick="switchUcTab(0,this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8a9 9 0 0118 0"/><rect x="3" y="8" width="3" height="6" rx="1.5" fill="currentColor"/><rect x="18" y="8" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
-        AI Recepční
-      </button>
-      <button class="uc2-tab" onclick="switchUcTab(1,this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h8M17 6l-1 .8M17 18l-1-.8"/></svg>
-        AI Automatizace
-      </button>
-      <button class="uc2-tab" onclick="switchUcTab(2,this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>
-        Reaktivace databáze
-      </button>
-      <button class="uc2-tab" onclick="switchUcTab(3,this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.47 2 2 0 013.59 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Missed Call Text-Back
-      </button>
+    <div class="bv2-grid fade-up">
+
+      <!-- CARD 1: AI Recepční -->
+      <div class="bv2-card">
+        <div class="bv2-illu">
+          <div class="bv2-call-card">
+            <div class="bv2-call-hdr">
+              <div class="bv2-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">KM</div>
+              <div style="flex:1">
+                <div style="font-size:.8rem;font-weight:700;color:var(--dark)">Klára Müllerová</div>
+                <div style="font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:5px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#22C55E;display:inline-block;animation:pulse-dot 2s infinite"></span>
+                  Hovor probíhá · 00:32
+                </div>
+              </div>
+              <div style="background:#EEF2FF;border-radius:8px;padding:4px 10px;font-size:.64rem;font-weight:700;color:var(--primary)">AI Recepční</div>
+            </div>
+            <div class="bv2-wave">
+              <div class="bv2-wave-bar" style="height:10px;animation-delay:0s"></div>
+              <div class="bv2-wave-bar" style="height:22px;animation-delay:.07s"></div>
+              <div class="bv2-wave-bar" style="height:30px;animation-delay:.14s"></div>
+              <div class="bv2-wave-bar" style="height:16px;animation-delay:.21s"></div>
+              <div class="bv2-wave-bar" style="height:26px;animation-delay:.28s"></div>
+              <div class="bv2-wave-bar" style="height:12px;animation-delay:.35s"></div>
+              <div class="bv2-wave-bar" style="height:32px;animation-delay:.42s"></div>
+              <div class="bv2-wave-bar" style="height:20px;animation-delay:.49s"></div>
+              <div class="bv2-wave-bar" style="height:28px;animation-delay:.56s"></div>
+              <div class="bv2-wave-bar" style="height:14px;animation-delay:.63s"></div>
+              <div class="bv2-wave-bar" style="height:24px;animation-delay:.70s"></div>
+              <div class="bv2-wave-bar" style="height:8px;animation-delay:.77s"></div>
+            </div>
+            <div class="bv2-chat">
+              <div class="bv2-bubble bv2-bubble-ai">Dobrý den, Salon Bella, jak vám mohu pomoci?</div>
+              <div class="bv2-bubble bv2-bubble-user">Potřebovala bych termín na střihání...</div>
+              <div class="bv2-bubble bv2-bubble-ai">Mám volno zítra ve 14:00! Zapíšu vás? 🙂</div>
+            </div>
+          </div>
+        </div>
+        <div class="bv2-body">
+          <div class="bv2-eyebrow">AI Recepční</div>
+          <div class="bv2-title">Telefon zvedá AI. Zní jako člověk.</div>
+          <div class="bv2-desc">Volajícímu odpoví přirozeným hlasem, domluví termín a zapíše ho do kalendáře — klient si ani nevšimne.</div>
+        </div>
+      </div>
+
+      <!-- CARD 2: AI Automatizace -->
+      <div class="bv2-card">
+        <div class="bv2-illu" style="flex-direction:column;gap:12px">
+          <div class="bv2-flow">
+            <div class="bv2-flow-step">
+              <div class="bv2-flow-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M17 14.2c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5-.1-.2-.6-1.5-.9-2.1-.2-.5-.5-.5-.7-.5h-.5c-.2 0-.5.1-.8.4s-1 1-1 2.5c0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.4.2-.6.2-1.2.1-1.4z" fill="white"/></svg>
+              </div>
+              <div class="bv2-flow-lbl">SMS</div>
+            </div>
+            <div class="bv2-flow-arr">→</div>
+            <div class="bv2-flow-step">
+              <div class="bv2-flow-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#EA4335"/><rect x="5.5" y="8" width="13" height="8.5" rx="1" fill="white"/><polyline points="5.5,8 12,13.5 18.5,8" fill="none" stroke="#EA4335" stroke-width="1.2"/></svg>
+              </div>
+              <div class="bv2-flow-lbl">E-mail</div>
+            </div>
+            <div class="bv2-flow-arr">→</div>
+            <div class="bv2-flow-step">
+              <div class="bv2-flow-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#4285F4"/><rect x="6.5" y="8" width="11" height="9.5" rx="1.5" fill="white"/><path d="M9.5 7v3M14.5 7v3" stroke="white" stroke-width="1.5" stroke-linecap="round"/><rect x="8.5" y="13" width="2" height="2" rx=".4" fill="#34A853"/></svg>
+              </div>
+              <div class="bv2-flow-lbl">Termín</div>
+            </div>
+            <div class="bv2-flow-arr">→</div>
+            <div class="bv2-flow-step">
+              <div class="bv2-flow-ico" style="background:#DCFCE7;border-color:rgba(22,163,74,.2)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#16A34A" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="bv2-flow-lbl" style="color:#16A34A">Hotovo</div>
+            </div>
+          </div>
+          <div class="bv2-seq">
+            <div class="bv2-seq-row">
+              <div class="bv2-seq-dot"></div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:.75rem;font-weight:600;color:var(--dark)">Follow-up po nezvednutém hovoru</div>
+                <div style="font-size:.65rem;color:var(--muted)">SMS → 30 min → E-mail → 2 dny</div>
+              </div>
+              <span style="font-size:.6rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">Aktivní</span>
+            </div>
+            <div class="bv2-seq-row">
+              <div class="bv2-seq-dot"></div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:.75rem;font-weight:600;color:var(--dark)">Připomínka termínu</div>
+                <div style="font-size:.65rem;color:var(--muted)">SMS 24h před · SMS 1h před</div>
+              </div>
+              <span style="font-size:.6rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0">Aktivní</span>
+            </div>
+          </div>
+        </div>
+        <div class="bv2-body">
+          <div class="bv2-eyebrow">AI Automatizace</div>
+          <div class="bv2-title">Zákazník jde celou cestou sám.</div>
+          <div class="bv2-desc">Follow-upy, SMS a e-maily nastavíme jednou. Pak pracují sami — bez vaší účasti.</div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Reaktivace databáze -->
+      <div class="bv2-card">
+        <div class="bv2-illu" style="flex-direction:column;align-items:flex-start">
+          <div class="bv2-stat-hero" style="text-align:center">
+            <div class="bv2-stat-num">428</div>
+            <div class="bv2-stat-sub">kontaktů osloveno jediným kliknutím</div>
+          </div>
+          <div class="bv2-mini-stats">
+            <div class="bv2-mini-cell" style="background:#EEF2FF">
+              <div class="bv2-mini-num" style="color:var(--primary)">96</div>
+              <div class="bv2-mini-lbl">Odpovědí</div>
+            </div>
+            <div class="bv2-mini-cell" style="background:#F0FDF4">
+              <div class="bv2-mini-num" style="color:#16A34A">31</div>
+              <div class="bv2-mini-lbl">Rezervací</div>
+            </div>
+            <div class="bv2-mini-cell" style="background:#F7F8FC">
+              <div class="bv2-mini-num" style="color:var(--dark)">184k</div>
+              <div class="bv2-mini-lbl">Kč tržby</div>
+            </div>
+          </div>
+          <div class="bv2-contacts">
+            <div class="bv2-contact-row">
+              <div class="bv2-contact-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div>
+              <span style="font-size:.75rem;font-weight:600;color:var(--dark)">Martin Kovář</span>
+              <span class="bv2-badge-ok">✓ Reagoval</span>
+            </div>
+            <div class="bv2-contact-row">
+              <div class="bv2-contact-av" style="background:linear-gradient(135deg,#f093fb,#f5576c)">JH</div>
+              <span style="font-size:.75rem;font-weight:600;color:var(--dark)">Jana Horáčková</span>
+              <span class="bv2-badge-sleep">Neaktivní 67d</span>
+            </div>
+            <div class="bv2-contact-row">
+              <div class="bv2-contact-av" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">LD</div>
+              <span style="font-size:.75rem;font-weight:600;color:var(--dark)">Lucie Dvořáková</span>
+              <span class="bv2-badge-ok">✓ Rezervovala</span>
+            </div>
+          </div>
+        </div>
+        <div class="bv2-body">
+          <div class="bv2-eyebrow">Reaktivace databáze</div>
+          <div class="bv2-title">Sedíte na zlatém dole. Jen to nevíte.</div>
+          <div class="bv2-desc">Stará databáze kontaktů = nevytěžený příjem. Jeden klik a systém je osloví cílenou kampaní.</div>
+        </div>
+      </div>
+
+      <!-- CARD 4: Missed Call Text-Back -->
+      <div class="bv2-card">
+        <div class="bv2-illu" style="flex-direction:column;align-items:center">
+          <div class="bv2-notif-card">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="bv2-missed-ico">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16.5 8.5L8.5 16.5M8.5 8.5l8 8" stroke="#DC2626" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div style="flex:1">
+                <div style="font-size:.75rem;font-weight:700;color:var(--dark)">Zmeškaný hovor</div>
+                <div style="font-size:.67rem;color:var(--muted)">+420 777 123 456 · před 4 s</div>
+              </div>
+              <div style="font-size:.6rem;font-weight:700;color:#DC2626;background:#FEE2E2;padding:2px 8px;border-radius:20px;flex-shrink:0">Nezvednutý</div>
+            </div>
+          </div>
+          <div class="bv2-sms-card">
+            <div style="font-size:.65rem;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:5px">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--primary)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Shieldex AI · automatická odpověď
+            </div>
+            <div class="bv2-sms-bubble">Dobrý den! 👋 Momentálně se věnujeme klientům. Jak vám můžeme pomoci?</div>
+            <div class="bv2-speed">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#16A34A"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              Odesláno za 4 sekundy
+            </div>
+          </div>
+        </div>
+        <div class="bv2-body">
+          <div class="bv2-eyebrow">Missed Call Text-Back</div>
+          <div class="bv2-title">Váš zákazník nebude čekat.</div>
+          <div class="bv2-desc">62 % hovorů do malých firem zůstane nezvednutých. Náš systém okamžitě zahájí SMS konverzaci.</div>
+        </div>
+      </div>
+
     </div>
-
-    <!-- Panels -->
-    <div class="uc2-panels fade-up">
-
-      <!-- Panel 0: AI Recepční -->
-      <div class="uc2-panel active">
-        <div class="uc2-visual" style="position:relative;overflow:hidden">
-          <img src="img_receptionist.png" class="uc2-gen-img" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:.18;pointer-events:none;z-index:0">
-          <div style="position:relative;z-index:1;display:contents">
-          <div class="uc2-vlabel">Hovor probíhá · AI Recepční</div>
-          <div class="uc2-phone-hdr">
-            <div class="uc2-phone-av">KM</div>
-            <div>
-              <div class="uc2-phone-name">Klára Müllerová</div>
-              <div class="uc2-phone-status">
-                <span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block;animation:pulse-dot 2s ease infinite"></span>
-                Hovor probíhá · 00:32
-              </div>
-            </div>
-            <div style="margin-left:auto;background:#EEF2FF;border-radius:10px;padding:8px 14px;font-size:.72rem;font-weight:700;color:var(--primary)">AI Recepční</div>
-          </div>
-          <div class="uc2-waveform">
-            <div class="uc2-wave-bar" style="height:16px;animation-delay:0s"></div>
-            <div class="uc2-wave-bar" style="height:30px;animation-delay:.07s"></div>
-            <div class="uc2-wave-bar" style="height:22px;animation-delay:.14s"></div>
-            <div class="uc2-wave-bar" style="height:38px;animation-delay:.21s"></div>
-            <div class="uc2-wave-bar" style="height:14px;animation-delay:.28s"></div>
-            <div class="uc2-wave-bar" style="height:28px;animation-delay:.35s"></div>
-            <div class="uc2-wave-bar" style="height:20px;animation-delay:.42s"></div>
-            <div class="uc2-wave-bar" style="height:34px;animation-delay:.49s"></div>
-            <div class="uc2-wave-bar" style="height:18px;animation-delay:.56s"></div>
-            <div class="uc2-wave-bar" style="height:24px;animation-delay:.63s"></div>
-            <div class="uc2-wave-bar" style="height:32px;animation-delay:.70s"></div>
-            <div class="uc2-wave-bar" style="height:16px;animation-delay:.77s"></div>
-          </div>
-          <div class="uc2-transcript">
-            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Dobrý den, Salon Bella, jak vám mohu pomoci?</div>
-            <div class="uc2-tline uc2-tline-caller"><b>Klára:</b> Potřebovala bych termín na střihání, máte volno?</div>
-            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Samozřejmě! Mám volno zítra ve 14:00 nebo v pátek v 10:30. Co vám víc vyhovuje?</div>
-            <div class="uc2-tline uc2-tline-caller"><b>Klára:</b> Zítra ve 14, to bude fajn.</div>
-            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Skvěle, Kláro! Termín je zarezervován. Pošleme vám SMS připomínku. Na shledanou!</div>
-          </div>
-          </div><!-- /z-index wrapper -->
-        </div>
-        <div class="uc2-detail">
-          <div class="uc2-eyebrow">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M3 8a9 9 0 0118 0"/><rect x="3" y="8" width="3" height="6" rx="1.5" fill="var(--primary)"/><rect x="18" y="8" width="3" height="6" rx="1.5" fill="var(--primary)"/></svg>
-            AI Recepční
-          </div>
-          <h3>Telefon zvedá AI. Zní jako člověk.</h3>
-          <p>Volajícímu odpoví přirozeným hlasem, domluví termín a zapíše ho do kalendáře — klient si ani nevšimne, že nemluví s recepční z masa a kostí.</p>
-          <div class="uc2-checks">
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Přirozený hlasový AI
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Rozumí dotazu v češtině
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Zapíše termín do kalendáře
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              K dispozici 24 hodin denně
-            </div>
-          </div>
-          <div class="uc2-btns">
-            <a href="#demo" class="btn btn-primary">Vyzkoušet živě →</a>
-            <a href="#contact" class="btn btn-outline">Domluvit ukázku</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel 1: AI Automatizace -->
-      <div class="uc2-panel">
-        <div class="uc2-visual" style="position:relative;overflow:hidden">
-          <img src="img_automation.png" class="uc2-gen-img" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:.15;pointer-events:none;z-index:0">
-          <div style="position:relative;z-index:1;display:contents">
-          <div class="uc2-vlabel">Automatizační sekvence · Aktivní</div>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding:16px;background:#F8FAFC;border-radius:14px;border:1px solid var(--border)">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M17 14.2c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5-.1-.2-.6-1.5-.9-2.1-.2-.5-.5-.5-.7-.5h-.5c-.2 0-.5.1-.8.4s-1 1-1 2.5c0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.4.2-.6.2-1.2.1-1.4z" fill="white"/></svg>
-              </div>
-              <span style="font-size:.6rem;color:var(--muted);font-weight:600">SMS</span>
-            </div>
-            <span style="color:#CBD5E1;font-size:.85rem">→</span>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#EA4335"/><rect x="5.5" y="8.5" width="13" height="8" rx="1" fill="white"/><path d="M5.5 8.5l6.5 5 6.5-5" stroke="#EA4335" stroke-width="1.3" fill="none"/></svg>
-              </div>
-              <span style="font-size:.6rem;color:var(--muted);font-weight:600">E-mail</span>
-            </div>
-            <span style="color:#CBD5E1;font-size:.85rem">→</span>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#4285F4"/><rect x="6.5" y="8.5" width="11" height="9" rx="1.5" fill="white"/><path d="M9 7v3M15 7v3" stroke="white" stroke-width="1.4" stroke-linecap="round"/><rect x="8.5" y="13" width="2" height="1.8" rx=".3" fill="#34A853"/><rect x="11" y="13" width="2" height="1.8" rx=".3" fill="#FBBC04"/></svg>
-              </div>
-              <span style="font-size:.6rem;color:var(--muted);font-weight:600">Kalendář</span>
-            </div>
-            <span style="color:#CBD5E1;font-size:.85rem">→</span>
-            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
-              <div style="width:42px;height:42px;border-radius:11px;background:#DCFCE7;border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#16A34A" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span style="font-size:.6rem;color:#16A34A;font-weight:700">Hotovo</span>
-            </div>
-          </div>
-          <div style="font-size:.72rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Aktivní sekvence</div>
-          <div style="display:flex;flex-direction:column;gap:10px;flex:1">
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
-              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Follow-up po nezvednutém hovoru</div>
-                <div style="font-size:.7rem;color:var(--muted)">SMS → 30 min → E-mail → 2 dny</div>
-              </div>
-              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
-              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Připomínka termínu</div>
-                <div style="font-size:.7rem;color:var(--muted)">SMS 24h před · SMS 1h před</div>
-              </div>
-              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
-              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
-              <div style="flex:1">
-                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Žádost o Google recenzi</div>
-                <div style="font-size:.7rem;color:var(--muted)">Po dokončené službě · automaticky</div>
-              </div>
-              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
-            </div>
-          </div>
-          </div><!-- /z-index wrapper -->
-        </div>
-        <div class="uc2-detail">
-          <div class="uc2-eyebrow">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h8M17 6l-1 .8M17 18l-1-.8"/></svg>
-            AI Automatizace
-          </div>
-          <h3>Zákazník jde celou cestou sám. Vy jen podepíšete.</h3>
-          <p>Follow-upy, SMS připomínky a e-mailové sekvence vedou zákazníka od prvního dotazu až k platbě — bez vaší účasti.</p>
-          <div class="uc2-checks">
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Automatické follow-upy
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              SMS připomínky termínů
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Google recenze automaticky
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Nastavení 1× — funguje napořád
-            </div>
-          </div>
-          <div class="uc2-btns">
-            <a href="#contact" class="btn btn-primary">Spustit automatizaci →</a>
-            <a href="#pricing" class="btn btn-outline">Ceník</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel 2: Reaktivace databáze -->
-      <div class="uc2-panel">
-        <div class="uc2-visual" style="position:relative;overflow:hidden">
-          <img src="img_reaktivace.png" class="uc2-gen-img" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:.15;pointer-events:none;z-index:0">
-          <div style="position:relative;z-index:1;display:contents">
-          <div class="uc2-vlabel">Kampaň odeslána · Stará databáze</div>
-          <div class="uc2-stat-hero">
-            <div class="uc2-stat-big">428</div>
-            <div class="uc2-stat-lbl">kontaktů osloveno jediným kliknutím</div>
-          </div>
-          <div class="uc2-stat-row">
-            <div class="uc2-stat-cell">
-              <div class="uc2-stat-num" style="color:#5B5CF6">96</div>
-              <div class="uc2-stat-sub">Odpovědí</div>
-            </div>
-            <div class="uc2-stat-cell">
-              <div class="uc2-stat-num" style="color:#16A34A">31</div>
-              <div class="uc2-stat-sub">Rezervací</div>
-            </div>
-            <div class="uc2-stat-cell">
-              <div class="uc2-stat-num">184k</div>
-              <div class="uc2-stat-sub">Kč tržby</div>
-            </div>
-          </div>
-          <div style="font-size:.78rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Reaktivovaní kontakty</div>
-          <div class="uc2-contact-row">
-            <div class="uc2-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div>
-            <span class="uc2-name">Martin Kovář</span>
-            <span class="uc2-badge uc2-badge-active">✓ Reagoval</span>
-          </div>
-          <div class="uc2-contact-row">
-            <div class="uc2-av" style="background:linear-gradient(135deg,#f093fb,#f5576c)">JH</div>
-            <span class="uc2-name">Jana Horáčková</span>
-            <span class="uc2-badge uc2-badge-sleep">Neaktivní 67d</span>
-          </div>
-          <div class="uc2-contact-row">
-            <div class="uc2-av" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">PL</div>
-            <span class="uc2-name">Petr Láska</span>
-            <span class="uc2-badge uc2-badge-active">✓ Rezervoval</span>
-          </div>
-          </div><!-- /z-index wrapper -->
-        </div>
-        <div class="uc2-detail">
-          <div class="uc2-eyebrow">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>
-            Reaktivace databáze
-          </div>
-          <h3>Sedíte na zlatém dole. Jen to nevíte.</h3>
-          <p>Máte stovky zákazníků, kteří nekoupili. Jeden klik a systém je osloví personalizovanou kampaní — část je připravena koupit právě teď.</p>
-          <div class="uc2-checks">
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              SMS + e-mail kampaně
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Personalizace pro každý kontakt
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Automatické follow-upy
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Přehled výsledků v reálném čase
-            </div>
-          </div>
-          <div class="uc2-btns">
-            <a href="#contact" class="btn btn-primary">Spustit kampaň →</a>
-            <a href="#pricing" class="btn btn-outline">Ceník</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Panel 3: Missed Call Text-Back -->
-      <div class="uc2-panel">
-        <div class="uc2-visual" style="position:relative;overflow:hidden">
-          <img src="img_missed.png" class="uc2-gen-img" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;opacity:.15;pointer-events:none;z-index:0">
-          <div style="position:relative;z-index:1;display:contents">
-          <div class="uc2-vlabel">Příchozí hovor · Právě teď</div>
-          <div class="uc2-call-row">
-            <div class="uc2-call-ico">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 8l-8 8M8 8l8 8" stroke="#DC2626" stroke-width="2.2" stroke-linecap="round"/></svg>
-            </div>
-            <div>
-              <div class="uc2-call-name">Zmeškaný hovor</div>
-              <div class="uc2-call-time">+420 777 123 456 · před 4 sekundami</div>
-            </div>
-            <div style="margin-left:auto;font-size:.72rem;font-weight:700;color:#DC2626;background:#FEE2E2;padding:3px 10px;border-radius:20px">Nezvednutý</div>
-          </div>
-          <div class="uc2-chat">
-            <div class="uc2-bubble uc2-bubble-user">Dobrý den, volal jsem kvůli rezervaci...</div>
-            <div class="uc2-bubble uc2-bubble-ai">Dobrý den! 👋 Momentálně se věnujeme klientům. Jak vám můžeme pomoci? Rádi vás zavoláme zpět nebo domluvíme termín.</div>
-            <div class="uc2-bubble uc2-bubble-user">Potřebuji termín na příští týden.</div>
-            <div class="uc2-bubble uc2-bubble-ai">Perfektní! Mám volno v úterý 14:00 nebo ve čtvrtek 10:30 — co vám lépe sedí?</div>
-          </div>
-          <div class="uc2-speed">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#16A34A"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Automatická odpověď odeslána za 4 sekundy
-          </div>
-          </div><!-- /z-index wrapper -->
-        </div>
-        <div class="uc2-detail">
-          <div class="uc2-eyebrow">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--primary)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Missed Call Text-Back
-          </div>
-          <h3>Váš zákazník nebude čekat. Nakoupí u konkurence.</h3>
-          <p>62 % hovorů do malých firem zůstane nezvednutých. Náš systém okamžitě zahájí SMS konverzaci — zákazník nekončí u konkurence.</p>
-          <div class="uc2-checks">
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Odpověď do 8 sekund
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Obsluha 24/7
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Domluví termín sám
-            </div>
-            <div class="uc2-check">
-              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Nastavení do 5 dní
-            </div>
-          </div>
-          <div class="uc2-btns">
-            <a href="#demo" class="btn btn-primary">Živé demo →</a>
-            <a href="#contact" class="btn btn-outline">Více informací</a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /uc2-panels -->
 
   </div>
 </section>
