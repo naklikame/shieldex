@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shieldex — AI Automatizace pro Podnikatele</title>
+<meta name="description" content="Shieldex automatizuje komunikaci, generuje leady a spravuje zákazníky díky AI — 24 hodin denně, bez přestávky.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#5B5CF6;--primary-dark:#4338CA;--primary-light:#EEF2FF;
+  --dark:#0D0D1A;--text:#1E1E3A;--muted:#64748B;--light:#94A3B8;
+  --white:#FFFFFF;--border:#E2E8F0;--radius:16px;--radius-sm:10px;--radius-lg:24px;
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-lg:0 12px 48px rgba(0,0,0,0.12);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:#fff;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#CBD5E0;border-radius:3px}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:.65rem 1.4rem;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .22s ease;border:none;white-space:nowrap;font-family:var(--font)}
+.btn-lg{padding:.9rem 2rem;font-size:1rem;border-radius:12px}
+.btn-dark{background:var(--dark);color:#fff}
+.btn-dark:hover{background:#2A2A4A;transform:translateY(-1px);box-shadow:0 6px 20px rgba(13,13,26,.25)}
+.btn-primary{
+  position:relative;isolation:isolate;background:transparent;color:#fff;border:none;
+  text-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.4,0,.2,1)
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:rgba(91,92,246,.85);
+  backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.22),
+    inset 1.8px 3px 0 -2px rgba(255,255,255,.75),
+    inset -2px -2px 0 -2px rgba(255,255,255,.55),
+    inset -3px -8px 1px -6px rgba(255,255,255,.4),
+    inset -.3px -1px 4px 0 rgba(0,0,0,.15),
+    inset -1.5px 2.5px 0 -2px rgba(0,0,0,.3),
+    inset 0 3px 4px -2px rgba(0,0,0,.2),
+    inset 2px -6.5px 1px -4px rgba(0,0,0,.12),
+    0 4px 20px rgba(91,92,246,.45),
+    0 1px 5px rgba(0,0,0,.08);
+  transition:background .4s cubic-bezier(1,0,.4,1),box-shadow .4s cubic-bezier(1,0,.4,1)
+}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary:hover::before{background:rgba(91,92,246,.95);box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.25),
+    inset 1.8px 3px 0 -2px rgba(255,255,255,.8),
+    inset -2px -2px 0 -2px rgba(255,255,255,.6),
+    inset -3px -8px 1px -6px rgba(255,255,255,.45),
+    inset -.3px -1px 4px 0 rgba(0,0,0,.15),
+    inset -1.5px 2.5px 0 -2px rgba(0,0,0,.3),
+    inset 0 3px 4px -2px rgba(0,0,0,.2),
+    inset 2px -6.5px 1px -4px rgba(0,0,0,.12),
+    0 8px 28px rgba(91,92,246,.55),
+    0 2px 8px rgba(0,0,0,.1)
+}
+.btn-primary:active{transform:scale(.97)}
+.btn-outline{
+  position:relative;isolation:isolate;background:transparent;color:var(--dark);border:none;
+  transition:transform .3s cubic-bezier(.4,0,.2,1)
+}
+.btn-outline::before{
+  content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(26px) saturate(160%);
+  -webkit-backdrop-filter:blur(26px) saturate(160%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.12),
+    inset 1.8px 3px 0 -2px rgba(255,255,255,.9),
+    inset -2px -2px 0 -2px rgba(255,255,255,.8),
+    inset -3px -8px 1px -6px rgba(255,255,255,.6),
+    inset -.3px -1px 4px 0 rgba(0,0,0,.1),
+    inset -1.5px 2.5px 0 -2px rgba(0,0,0,.18),
+    inset 0 3px 4px -2px rgba(0,0,0,.18),
+    inset 2px -6.5px 1px -4px rgba(0,0,0,.08),
+    0 1px 4px rgba(0,0,0,.08),
+    0 4px 14px rgba(0,0,0,.06);
+  transition:background .4s cubic-bezier(1,0,.4,1),box-shadow .4s cubic-bezier(1,0,.4,1)
+}
+.btn-outline:hover{transform:translateY(-2px);color:var(--primary)}
+.btn-outline:hover::before{background:rgba(255,255,255,.78)}
+.btn-outline:active{transform:scale(.97)}
+.btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.8)}
+.btn-ghost{background:transparent;color:var(--dark)}
+.btn-ghost:hover{background:rgba(0,0,0,.04)}
+
+/* ── GLASS ── */
+.glass{
+  background:linear-gradient(135deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.25) 100%);
+  backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 8px 32px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(0,0,0,.04)
+}
+
+/* ── NAVBAR ── */
+#navbar{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  width:calc(100% - 40px);max-width:1160px;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:64px;border-radius:18px;
+  isolation:isolate;background:transparent;
+  border:1px solid rgba(255,255,255,.8);
+  transition:border-color .3s ease
+}
+#navbar::before{
+  content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(34px) saturate(180%);-webkit-backdrop-filter:blur(34px) saturate(180%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.15),
+    inset 1.8px 2px 0 -2px rgba(255,255,255,.85),
+    inset -2px -2px 0 -2px rgba(255,255,255,.6),
+    inset -.3px -1px 3px 0 rgba(0,0,0,.08),
+    inset 0 2px 4px -2px rgba(0,0,0,.1),
+    0 4px 24px rgba(0,0,0,.08),
+    0 1px 5px rgba(0,0,0,.06);
+  transition:background .3s ease,box-shadow .3s ease
+}
+#navbar.scrolled::before{box-shadow:0 4px 30px rgba(0,0,0,.12);background:rgba(255,255,255,.92)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:800;color:var(--dark)}
+.nav-logo svg{width:32px;height:32px}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;padding:110px 20px 0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;text-align:center
+}
+.hero-bg{
+  position:absolute;inset:-20px;
+  background-image:url('background.jpg');
+  background-size:cover;background-position:center 65%;background-repeat:no-repeat;
+  filter:blur(7px) brightness(1.12) saturate(1.3) contrast(1.05);
+  z-index:0
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(225,242,255,.63) 0%,rgba(235,246,255,.78) 30%,rgba(245,250,255,.92) 60%,rgba(255,255,255,.97) 100%);
+  pointer-events:none;z-index:1
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:200px;
+  background:linear-gradient(to bottom,transparent 0%,rgba(255,255,255,.55) 45%,#ffffff 100%);
+  pointer-events:none;z-index:1
+}
+.hero-clouds{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cloud-svg{position:absolute;pointer-events:none}
+
+.hero-inner{position:relative;z-index:2;max-width:680px;margin:0 auto}
+
+.hero-badge{
+  position:relative;isolation:isolate;
+  display:inline-flex;align-items:center;gap:0;margin-bottom:1.75rem;
+  padding:5px 5px 5px 16px;border-radius:50px;
+  background:transparent;border:1px solid rgba(255,255,255,.95)
+}
+.hero-badge::before{
+  content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(32px) saturate(160%);
+  -webkit-backdrop-filter:blur(32px) saturate(160%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.15),
+    inset 1.8px 2px 0 -2px rgba(255,255,255,.9),
+    inset -2px -2px 0 -2px rgba(255,255,255,.7),
+    inset -.3px -1px 3px 0 rgba(0,0,0,.08),
+    0 2px 20px rgba(0,0,0,.07)
+}
+.hb-text{font-size:.8rem;font-weight:500;color:#64748B;padding-right:10px;white-space:nowrap}
+.hb-chip{
+  position:relative;isolation:isolate;
+  display:inline-flex;align-items:center;gap:4px;
+  padding:5px 13px;border-radius:50px;
+  background:transparent;
+  color:#fff;font-size:.78rem;font-weight:700;letter-spacing:-.01em;
+  text-shadow:0 1px 2px rgba(0,0,0,.2)
+}
+.hb-chip::before{
+  content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;
+  background:rgba(91,92,246,.85);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.2),
+    inset 1.5px 2px 0 -1.5px rgba(255,255,255,.7),
+    inset -1.5px -1.5px 0 -1.5px rgba(255,255,255,.4),
+    0 2px 12px rgba(91,92,246,.4)
+}
+
+.hero h1{
+  font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:700;line-height:1.08;
+  color:var(--dark);margin-bottom:1.25rem;letter-spacing:-.025em
+}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 2.5rem;line-height:1.75}
+.hero-ctas{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.play-btn{
+  display:flex;align-items:center;gap:10px;font-size:1rem;font-weight:600;
+  color:var(--dark);background:none;border:none;cursor:pointer;font-family:var(--font)
+}
+.play-circle{
+  width:38px;height:38px;background:var(--dark);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.2)
+}
+
+/* ── DASHBOARD MOCKUP ── */
+.hero-visual-fade{
+  position:relative;z-index:2;width:100%;max-width:1100px;margin:3rem auto 0;
+}
+/* Bottom fade only: dashboard → white */
+.hero-visual-fade::before{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:48%;
+  background:linear-gradient(to bottom,transparent 0%,rgba(255,255,255,.6) 50%,#ffffff 100%);
+  pointer-events:none;z-index:10;border-radius:0 0 20px 20px
+}
+.hero-visual{
+  width:100%;max-width:960px;margin:0 auto;
+  padding:8px;
+  background:rgba(255,255,255,.38);
+  backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%);
+  border:1px solid rgba(255,255,255,.82);
+  border-radius:26px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    inset 0 -1px 0 rgba(255,255,255,.5),
+    0 2px 0 rgba(255,255,255,.7),
+    0 40px 120px rgba(0,0,0,.13),
+    0 8px 32px rgba(0,0,0,.07)
+}
+.dash-wrap{
+  background:#fff;border-radius:20px;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+  display:flex;min-height:460px
+}
+.ds{width:188px;min-width:188px;background:#FAFAFA;border-right:1px solid #F0F0F0;padding:18px 0;display:flex;flex-direction:column}
+.ds-logo{display:flex;align-items:center;gap:8px;padding:0 14px 16px;font-weight:800;font-size:.88rem;color:var(--dark);border-bottom:1px solid #F0F0F0;margin-bottom:10px}
+.ds-logo svg{width:22px;height:22px}
+.ds-sec{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94A3B8;padding:10px 14px 4px}
+.ds-item{display:flex;align-items:center;gap:9px;padding:9px 14px;font-size:.75rem;font-weight:500;color:#64748B;cursor:pointer;border-radius:8px;margin:1px 6px;transition:all .15s}
+.ds-item.active{background:var(--primary);color:#fff}
+.ds-item svg{width:14px;height:14px;flex-shrink:0}
+.dm{flex:1;background:#fff;display:flex;flex-direction:column;overflow:hidden}
+.dm-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid #F0F0F0}
+.dm-search{display:flex;align-items:center;gap:8px;background:#F8F9FA;border:1px solid #EBEBEB;border-radius:8px;padding:6px 12px;font-size:.72rem;color:#94A3B8;width:200px}
+.dm-user{display:flex;align-items:center;gap:8px;font-size:.72rem}
+.dm-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.68rem;font-weight:700}
+.dm-body{padding:16px 18px;flex:1;overflow:hidden}
+.dm-title{font-size:1rem;font-weight:700;margin-bottom:14px;color:var(--dark)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:#FAFAFA;border:1px solid #EFEFEF;border-radius:10px;padding:11px}
+.kpi-lbl{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#94A3B8;margin-bottom:3px}
+.kpi-val{font-size:1.3rem;font-weight:800;color:var(--dark);line-height:1;margin-bottom:3px}
+.kpi-chg{font-size:.6rem;font-weight:600;display:flex;align-items:center;gap:2px}
+.up{color:#16A34A}.down{color:#DC2626}
+.dm-bottom{display:grid;grid-template-columns:1.5fr 1fr;gap:10px}
+.dm-card{background:#FAFAFA;border:1px solid #EFEFEF;border-radius:10px;padding:12px}
+.dm-card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.dm-card-ttl{font-size:.7rem;font-weight:700;color:var(--dark)}
+.dm-tabs{display:flex;gap:3px}
+.dm-tab{padding:2px 7px;border-radius:4px;font-size:.57rem;font-weight:600;color:#94A3B8;cursor:pointer}
+.dm-tab.active{background:var(--primary);color:#fff}
+.contact-item{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid #F5F5F5}
+.contact-item:last-child{border-bottom:none}
+.c-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#fff;flex-shrink:0}
+.c-name{font-size:.67rem;font-weight:600;color:var(--dark)}
+.c-time{font-size:.58rem;color:#94A3B8}
+.c-act{display:flex;gap:3px;margin-left:auto}
+.c-btn{width:18px;height:18px;border-radius:4px;border:1px solid #E8E8E8;display:flex;align-items:center;justify-content:center;font-size:.55rem;cursor:pointer;color:#64748B}
+
+/* ── SECTION COMMON ── */
+.section{padding:100px 20px}
+.container{max-width:1100px;margin:0 auto}
+.section-label{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--primary-light);color:var(--primary);
+  font-size:.75rem;font-weight:700;padding:5px 16px;border-radius:50px;
+  margin-bottom:1.1rem;text-transform:uppercase;letter-spacing:.08em;
+  border:1px solid rgba(91,92,246,.15)
+}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--dark);margin-bottom:1rem}
+.section-sub{font-size:1.05rem;color:var(--muted);max-width:540px;line-height:1.75}
+.text-center{text-align:center}
+.text-center .section-sub{margin:0 auto}
+
+/* ── LOGO SECTION border-top shadow ── */
+.logos-section{
+  padding:48px 0 64px;background:#fff;
+  border-bottom:1px solid #F0F0F0;
+  margin-top:-80px;position:relative;z-index:1;
+  overflow:hidden
+}
+
+/* ── LOGOS ── */
+.logos-marquee{
+  position:relative;overflow:hidden;
+  width:100%;max-width:680px;margin:0 auto;
+}
+.logos-marquee::before,.logos-marquee::after{
+  content:'';position:absolute;top:0;bottom:0;width:70px;z-index:2;pointer-events:none
+}
+.logos-marquee::before{left:0;background:linear-gradient(to right,#fff 0%,#fff 25%,rgba(255,255,255,0) 100%)}
+.logos-marquee::after{right:0;background:linear-gradient(to left,#fff 0%,#fff 25%,rgba(255,255,255,0) 100%)}
+.logos-track{
+  display:flex;align-items:center;gap:3rem;width:max-content;
+  animation:logos-scroll 26s linear infinite
+}
+@keyframes logos-scroll{
+  from{transform:translateX(-25%)}
+  to{transform:translateX(-75%)}
+}
+.logo-item{font-size:1rem;font-weight:700;color:#475569;letter-spacing:-.01em;transition:opacity .2s;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;opacity:.8}
+.logo-item:hover{opacity:1}
+.logo-badge{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* retained keyframes needed elsewhere */
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.22)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.08)}}
+@keyframes wave-bounce{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+@keyframes ai-line-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* stats bar */
+.uc-stats-bar{
+  display:flex;justify-content:center;gap:0;
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;margin:0 auto 3rem;width:fit-content;
+  box-shadow:0 2px 12px rgba(0,0,0,.05)
+}
+.uc-stat{
+  padding:18px 36px;text-align:center;
+  border-right:1px solid var(--border)
+}
+.uc-stat:last-child{border-right:none}
+.uc-stat-num{font-size:1.55rem;font-weight:700;color:var(--dark);line-height:1;letter-spacing:-.02em}
+.uc-stat-lbl{font-size:.68rem;color:var(--muted);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── USE CASES v2 (tab layout) ── */
+.usecases{background:#F7F8FC}
+.uc-intro{max-width:680px;margin:0 auto 3rem;text-align:center}
+.uc-intro .section-sub{margin:0 auto 2rem}
+.uc2-tabbar{
+  display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+  background:rgba(0,0,0,.06);border-radius:50px;padding:5px;
+  width:fit-content;margin:0 auto 36px
+}
+.uc2-tab{
+  padding:10px 22px;border-radius:50px;font-size:.88rem;font-weight:600;
+  color:var(--muted);cursor:pointer;transition:all .22s;
+  border:none;background:transparent;font-family:var(--font);
+  display:flex;align-items:center;gap:7px;white-space:nowrap
+}
+.uc2-tab.active{background:#fff;color:var(--dark);box-shadow:0 2px 14px rgba(0,0,0,.1)}
+.uc2-tab:hover:not(.active){color:var(--dark)}
+.uc2-panels{position:relative}
+.uc2-panel{display:none;grid-template-columns:1.15fr 1fr;gap:20px;align-items:stretch}
+.uc2-panel.active{display:grid}
+/* Visual side */
+.uc2-visual{
+  border-radius:28px;overflow:hidden;
+  background:#fff;
+  box-shadow:0 24px 64px rgba(0,0,0,.1),0 4px 16px rgba(0,0,0,.06);
+  min-height:460px;display:flex;flex-direction:column;
+  padding:36px
+}
+/* Detail side */
+.uc2-detail{
+  background:#fff;border-radius:28px;padding:38px;
+  display:flex;flex-direction:column;
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+  border:1px solid var(--border)
+}
+.uc2-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--primary);margin-bottom:14px
+}
+.uc2-detail h3{font-size:1.6rem;font-weight:700;color:var(--dark);line-height:1.25;margin-bottom:12px;letter-spacing:-.02em}
+.uc2-detail>p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.uc2-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:32px}
+.uc2-check{display:flex;align-items:flex-start;gap:9px;font-size:.85rem;color:var(--dark);line-height:1.4}
+.uc2-check-ico{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.uc2-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+/* Visual internals */
+.uc2-vlabel{font-size:.7rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px}
+/* SMS visual */
+.uc2-call-row{display:flex;align-items:center;gap:12px;background:#F8FAFC;border-radius:14px;padding:14px 16px;border:1px solid var(--border);margin-bottom:16px}
+.uc2-call-ico{width:40px;height:40px;border-radius:50%;background:#FEE2E2;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.uc2-call-name{font-size:.88rem;font-weight:700;color:var(--dark)}
+.uc2-call-time{font-size:.72rem;color:#94A3B8}
+.uc2-chat{display:flex;flex-direction:column;gap:10px;flex:1}
+.uc2-bubble{padding:12px 16px;border-radius:18px;font-size:.85rem;line-height:1.55;max-width:85%}
+.uc2-bubble-ai{background:var(--primary);color:#fff;border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 4px 16px rgba(91,92,246,.25)}
+.uc2-bubble-user{background:#F1F5F9;color:var(--dark);border-bottom-right-radius:4px;align-self:flex-end}
+.uc2-speed{display:flex;align-items:center;gap:8px;font-size:.78rem;color:#16A34A;font-weight:600;padding:10px 14px;background:#F0FDF4;border-radius:10px;border:1px solid #BBF7D0;margin-top:auto}
+/* Stats visual */
+.uc2-stat-hero{text-align:center;padding:24px 0 20px}
+.uc2-stat-big{font-size:3.5rem;font-weight:700;color:var(--dark);line-height:1;letter-spacing:-.04em}
+.uc2-stat-lbl{font-size:.85rem;color:var(--muted);margin-top:6px}
+.uc2-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-bottom:20px}
+.uc2-stat-cell{background:#fff;padding:18px;text-align:center}
+.uc2-stat-num{font-size:1.4rem;font-weight:700;color:var(--dark)}
+.uc2-stat-sub{font-size:.68rem;color:#94A3B8;margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+.uc2-contact-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.uc2-contact-row:last-child{border:none}
+.uc2-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#fff;flex-shrink:0}
+.uc2-name{flex:1;font-size:.83rem;font-weight:600;color:var(--dark)}
+.uc2-badge{font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.uc2-badge-sleep{background:#FEF3C7;color:#D97706}
+.uc2-badge-active{background:#DCFCE7;color:#16A34A}
+/* Call visual */
+.uc2-phone-hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:16px;background:#F8FAFC;border-radius:16px;border:1px solid var(--border)}
+.uc2-phone-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;color:#fff;flex-shrink:0}
+.uc2-phone-name{font-size:.9rem;font-weight:700;color:var(--dark)}
+.uc2-phone-status{font-size:.72rem;color:#94A3B8;display:flex;align-items:center;gap:5px}
+.uc2-waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:44px;margin:16px 0}
+.uc2-wave-bar{width:3px;border-radius:2px;background:var(--primary);animation:wave-bounce 1s ease-in-out infinite}
+.uc2-transcript{display:flex;flex-direction:column;gap:8px;flex:1}
+.uc2-tline{font-size:.8rem;line-height:1.5;padding:9px 12px;border-radius:12px}
+.uc2-tline-ai{background:var(--primary-light);color:#3730A3}
+.uc2-tline-caller{background:#F1F5F9;color:#475569}
+
+/* ── INTEGRATIONS ── */
+.integrations{
+  background:#9DC8EE;
+  text-align:center;position:relative;overflow:hidden;
+  margin-top:-32px;z-index:2;
+  border-radius:32px 32px 0 0;
+  box-shadow:0 -10px 60px rgba(0,0,0,.08)
+}
+.int-orbit-wrap{position:relative;width:380px;height:380px;margin:0 auto}
+.int-orbit-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(91,92,246,.11) 0%,transparent 70%);
+  pointer-events:none
+}
+.int-ring{
+  position:absolute;border-radius:50%;border:1px dashed rgba(91,92,246,.2);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  transition:border-color .4s,border-style .4s
+}
+.int-ring-outer{width:300px;height:300px}
+.int-ring-inner{width:190px;height:190px}
+.int-orbit-wrap:hover .int-ring-outer{
+  animation:orbit-spin 10s linear infinite;
+  border-style:solid;border-color:rgba(91,92,246,.35)
+}
+.int-orbit-wrap:hover .int-ring-inner{
+  animation:orbit-spin 6s linear infinite reverse;
+  border-style:solid;border-color:rgba(91,92,246,.28)
+}
+@keyframes orbit-spin{
+  from{transform:translate(-50%,-50%) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+.int-oi{
+  position:absolute;width:56px;height:56px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.9);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.1);
+  cursor:pointer;transition:transform .2s,box-shadow .2s
+}
+.int-oi:hover{transform:scale(1.12);box-shadow:0 10px 30px rgba(0,0,0,.14)}
+.int-oi-sm{width:46px;height:46px}
+.int-center{
+  position:absolute;width:66px;height:66px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:#fff;border-radius:50%;
+  border:1px solid rgba(91,92,246,.1);
+  box-shadow:0 0 0 10px rgba(91,92,246,.05),0 8px 32px rgba(91,92,246,.16);
+  display:flex;align-items:center;justify-content:center;z-index:10;overflow:hidden
+}
+@media(max-width:500px){.int-orbit-wrap{transform:scale(.73);margin:-48px auto}}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:#fff}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:3rem}
+.test-card{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;transition:transform .25s,box-shadow .25s}
+.test-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.test-stars{color:#F59E0B;font-size:1rem;margin-bottom:1rem;letter-spacing:1px}
+.test-quote{font-size:.92rem;color:var(--text);line-height:1.7;margin-bottom:1.5rem;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;color:#fff;flex-shrink:0}
+.test-name{font-size:.88rem;font-weight:700;color:var(--dark)}
+.test-role{font-size:.78rem;color:var(--muted)}
+
+/* ── PRICING ── */
+.pricing{
+  background:#F7F8FC;
+  margin-top:-32px;position:relative;z-index:3;
+  border-radius:32px 32px 0 0;
+  box-shadow:0 -10px 60px rgba(0,0,0,.08)
+}
+.pricing-toggle{display:flex;align-items:center;gap:0;background:#E8E8F0;border-radius:50px;padding:4px;margin:2rem auto 0;width:fit-content}
+.ptog{padding:8px 22px;border-radius:50px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);border:none;background:none;font-family:var(--font)}
+.ptog.active{background:#fff;color:var(--dark);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.pdiscount{background:#DCFCE7;color:#16A34A;font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:50px;margin-left:6px}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:3rem;align-items:start}
+.price-card{
+  background:#fff;border:1.5px solid var(--border);border-radius:20px;
+  padding:28px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  position:relative
+}
+.price-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.price-card.featured{
+  border:2px solid var(--primary);
+  background:#fff;
+  transform:translateY(-4px);
+  box-shadow:0 0 0 4px rgba(91,92,246,.1),0 20px 50px rgba(91,92,246,.18)
+}
+.price-card.featured:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 0 4px rgba(91,92,246,.16),0 28px 64px rgba(91,92,246,.26)
+}
+.price-popular{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--primary);color:#fff;font-size:.72rem;font-weight:700;
+  padding:4px 16px;border-radius:50px;white-space:nowrap
+}
+.price-tier{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.25rem}
+.price-desc{font-size:.82rem;color:var(--muted);margin-bottom:1.25rem;min-height:2.5rem}
+.price-val{display:flex;align-items:flex-end;gap:4px;margin-bottom:.25rem}
+.price-amount{font-size:2.5rem;font-weight:700;color:var(--dark);line-height:1}
+.price-amount.custom{font-size:2rem}
+.price-period{font-size:.82rem;color:var(--muted);margin-bottom:6px}
+.price-divider{height:1px;background:var(--border);margin:1.25rem 0}
+.price-features{display:flex;flex-direction:column;gap:.65rem}
+.pf{display:flex;align-items:flex-start;gap:8px;font-size:.82rem;color:var(--text)}
+.pf svg{flex-shrink:0;margin-top:2px}
+.pf.off svg{color:#D1D5DB}.pf.off span{color:var(--light)}
+.price-cta{margin-top:1.75rem}
+.price-cta .btn{width:100%;justify-content:center;padding:.8rem}
+
+/* ── FAQ ── */
+.faq{background:#fff}
+.faq-grid{display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start;margin-top:3rem}
+.faq-contact-card{background:var(--primary-light);border-radius:var(--radius-lg);padding:28px;margin-top:1.5rem}
+.faq-contact-avs{display:flex;margin-bottom:1rem}
+.faq-av{width:38px;height:38px;border-radius:50%;border:3px solid var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;color:#fff;margin-right:-10px}
+.faq-contact-card p{font-size:.875rem;color:var(--muted);margin-bottom:1.25rem;margin-top:.25rem}
+.faq-items{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0;cursor:pointer;font-size:.95rem;font-weight:600;color:var(--dark);
+  transition:color .2s;gap:16px
+}
+.faq-q:hover{color:var(--primary)}
+.faq-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s;color:var(--muted)}
+.faq-item.open .faq-icon{background:var(--primary);border-color:var(--primary);color:#fff;transform:rotate(45deg)}
+.faq-a{display:none;font-size:.875rem;color:var(--muted);line-height:1.75;padding-bottom:20px}
+.faq-item.open .faq-a{display:block}
+
+
+/* ── CTA ── */
+.cta-section{
+  padding:100px 20px;text-align:center;
+  background:#9DC8EE;
+  position:relative;overflow:hidden;
+  margin-top:-32px;z-index:4;
+  border-radius:32px 32px 0 0;
+  box-shadow:0 -10px 60px rgba(0,0,0,.08)
+}
+.cta-section .c1,.cta-section .c2{position:absolute}
+.cta-section h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;color:var(--dark);margin-bottom:1rem;letter-spacing:-.025em}
+.cta-section p{font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{
+  background:#fff;padding:60px 20px 30px;
+  margin-top:-32px;position:relative;z-index:5;
+  border-radius:32px 32px 0 0;
+  box-shadow:0 -10px 60px rgba(0,0,0,.07)
+}
+.footer-grid{display:grid;grid-template-columns:280px 1fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.footer-brand p{font-size:.875rem;color:var(--muted);line-height:1.7;margin-top:.75rem;max-width:220px}
+.footer-col h4{font-size:.82rem;font-weight:700;color:var(--dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:1.1rem}
+.footer-col a{display:block;font-size:.875rem;color:var(--muted);margin-bottom:.7rem;transition:color .2s}
+.footer-col a:hover{color:var(--primary)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--border)}
+.footer-bottom p{font-size:.8rem;color:var(--light)}
+.back-top{
+  display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted);cursor:pointer;transition:color .2s
+}
+.back-top:hover{color:var(--primary)}
+.back-top-btn{
+  width:32px;height:32px;border-radius:50%;background:var(--primary);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem
+}
+
+/* ── SECTION BACKGROUND (shared photo bg like hero) ── */
+.section-bg{
+  position:absolute;inset:-20px;z-index:0;
+  background-image:url('background.jpg');
+  background-size:cover;background-position:center 65%;
+  filter:blur(7px) brightness(1.12) saturate(1.3) contrast(1.05);
+  pointer-events:none
+}
+.section-scrim{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(210,235,255,.58) 0%,
+    rgba(220,240,255,.72) 30%,
+    rgba(238,248,255,.84) 60%,
+    rgba(250,253,255,.93) 100%)
+}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .feat-grid,.pricing-grid{grid-template-columns:1fr 1fr}
+  .uc-block{grid-template-columns:1fr;gap:32px;margin-bottom:4rem}
+  .uc-block-rev .uc-block-visual{order:0}
+  .faq-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dm-bottom{grid-template-columns:1fr}
+  .dash-wrap{min-height:auto}
+  .ds{display:none}
+  .test-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .uc2-panel.active{grid-template-columns:1fr}
+  .uc2-visual{min-height:320px}
+  .uc2-checks{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .feat-grid,.pricing-grid{grid-template-columns:1fr}
+  .logos-track{gap:1.5rem;animation-duration:18s}
+  .nav-links{display:none}
+  .int-grid{grid-template-columns:repeat(4,64px)}
+  .int-icon{width:64px;height:64px}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <img src="logo-cropped.png" alt="Shieldex" style="height:38px;width:auto;object-fit:contain">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Domů</a></li>
+    <li><a href="#about">Funkce</a></li>
+    <li><a href="#pricing">Ceník</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="btn btn-outline">Přihlásit se</a>
+    <a href="#pricing" class="btn btn-dark">Začít zdarma</a>
+  </div>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-inner fade-up">
+    <div class="hero-badge">
+      <span class="hb-text">Reagujeme za vás</span>
+      <div class="hb-chip">⚡ Do 8 sekund</div>
+    </div>
+
+    <h1>Leady z reklam máte.<br>Utíkají bez odpovědi.</h1>
+    <p>Zákazník klikl na vaši reklamu v 19:45. Napsal dotaz. Čekal. Nikdo neodpověděl. Ráno zavolal konkurenci. Shieldex zajistí, že každý lead dostane odpověď — i ve 3 v noci.</p>
+
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn btn-primary btn-lg">Zastavit únik leadů →</a>
+      <button class="play-btn">
+        <div class="play-circle">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="white"><path d="M1 1L9 6L1 11V1Z" fill="white"/></svg>
+        </div>
+        Shlédnout jak to funguje
+      </button>
+    </div>
+  </div>
+
+  <!-- Dashboard mockup -->
+  <div class="hero-visual-fade fade-up">
+  <div class="hero-visual">
+    <div class="dash-wrap">
+      <!-- Sidebar -->
+      <div class="ds">
+        <div class="ds-logo">
+          <img src="logo-cropped.png" alt="Shieldex" style="height:26px;width:auto;object-fit:contain">
+        </div>
+        <div class="ds-sec">Menu</div>
+        <div class="ds-item active">
+          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>Přehled
+        </div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5" r="3"/><path d="M1 14c0-3.314 3.134-6 7-6s7 2.686 7 6"/></svg>Kontakty
+        </div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="11" rx="2"/><path d="M1 7h14"/><path d="M5 1v4M11 1v4"/></svg>Pipeline
+        </div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2h12v12H2z" rx="1"/><path d="M2 6h12M6 6v8"/></svg>Objednávky
+        </div>
+        <div class="ds-sec">AI Nástroje</div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg>Automatizace
+        </div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h12v8H9l-3 2V11H2V3z"/></svg>AI Chat
+        </div>
+        <div class="ds-sec">Nastavení</div>
+        <div class="ds-item">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.22 3.22l1.42 1.42M11.36 11.36l1.42 1.42M3.22 12.78l1.42-1.42M11.36 4.64l1.42-1.42"/></svg>Nastavení
+        </div>
+      </div>
+      <!-- Main -->
+      <div class="dm">
+        <div class="dm-top">
+          <div class="dm-search">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="7" cy="7" r="5"/><path d="M12 12l3 3"/></svg>
+            Hledat...&nbsp;&nbsp;<span style="color:#D1D5DB;font-size:.6rem">⌘K</span>
+          </div>
+          <div class="dm-user">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <div class="dm-av">JN</div>
+            <div>
+              <div style="font-weight:700;font-size:.72rem;color:#1E1E3A">Jan Novák</div>
+              <div style="font-size:.6rem;color:#94A3B8">jan.novak@firma.cz</div>
+            </div>
+          </div>
+        </div>
+        <div class="dm-body">
+          <div class="dm-title">Přehled</div>
+          <div class="kpi-grid">
+            <div class="kpi"><div class="kpi-lbl">Noví zákazníci</div><div class="kpi-val">247</div><div class="kpi-chg up">↑ 12.4% vs minulý měsíc</div></div>
+            <div class="kpi"><div class="kpi-lbl">Míra konverze</div><div class="kpi-val">34.8%</div><div class="kpi-chg down">↓ 2.1% vs minulý měsíc</div></div>
+            <div class="kpi"><div class="kpi-lbl">Čekající leady</div><div class="kpi-val">18</div><div class="kpi-chg up">↑ 5.0% vs minulý měsíc</div></div>
+            <div class="kpi"><div class="kpi-lbl">Aktivní smlouvy</div><div class="kpi-val">1 847</div><div class="kpi-chg up">↑ 18.2% vs minulý měsíc</div></div>
+          </div>
+          <div class="dm-bottom">
+            <div class="dm-card">
+              <div class="dm-card-hdr">
+                <div class="dm-card-ttl">Příjmy (MRR)</div>
+                <div class="dm-tabs"><div class="dm-tab active">Měsíčně</div><div class="dm-tab">Ročně</div></div>
+              </div>
+              <svg class="dash-chart-svg" viewBox="0 0 300 90" fill="none" style="width:100%;height:80px">
+                <defs>
+                  <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366F1" stop-opacity=".25"/><stop offset="100%" stop-color="#6366F1" stop-opacity="0"/></linearGradient>
+                </defs>
+                <path d="M0 80 L40 72 L80 68 L120 56 L160 45 L200 35 L240 22 L280 12 L300 8" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                <path d="M0 80 L40 72 L80 68 L120 56 L160 45 L200 35 L240 22 L280 12 L300 8 L300 90 L0 90Z" fill="url(#cg)"/>
+                <circle cx="240" cy="22" r="4" fill="#6366F1"/>
+                <rect x="195" y="8" width="70" height="20" rx="5" fill="#1E1E3A"/>
+                <text x="230" y="22" text-anchor="middle" fill="white" font-size="8" font-weight="700">58 400 Kč</text>
+              </svg>
+              <div style="display:flex;justify-content:space-between;margin-top:6px">
+                <span style="font-size:.6rem;color:#94A3B8">Čvc</span><span style="font-size:.6rem;color:#94A3B8">Srp</span><span style="font-size:.6rem;color:#94A3B8">Zář</span><span style="font-size:.6rem;color:#94A3B8">Říj</span><span style="font-size:.6rem;color:#94A3B8">Lis</span><span style="font-size:.6rem;color:#94A3B8">Pro</span>
+              </div>
+            </div>
+            <div class="dm-card">
+              <div class="dm-card-hdr"><div class="dm-card-ttl">Poslední kontakty</div></div>
+              <div class="contact-item"><div class="c-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div><div class="c-info"><div class="c-name">Martin Kovář</div><div class="c-time">2 dny zpět</div></div><div class="c-act"><div class="c-btn">✎</div><div class="c-btn">✕</div></div></div>
+              <div class="contact-item"><div class="c-av" style="background:linear-gradient(135deg,#f093fb,#f5576c)">JH</div><div class="c-info"><div class="c-name">Jana Horáčková</div><div class="c-time">3 dny zpět</div></div><div class="c-act"><div class="c-btn">✎</div><div class="c-btn">✕</div></div></div>
+              <div class="contact-item"><div class="c-av" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">TBl</div><div class="c-info"><div class="c-name">Tomáš Blažek</div><div class="c-time">4 dny zpět</div></div><div class="c-act"><div class="c-btn">✎</div><div class="c-btn">✕</div></div></div>
+              <div class="contact-item"><div class="c-av" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">LD</div><div class="c-info"><div class="c-name">Lucie Dvořáková</div><div class="c-time">5 dní zpět</div></div><div class="c-act"><div class="c-btn">✎</div><div class="c-btn">✕</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LOGOS ══════════ -->
+<section class="logos-section">
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logo-item">
+        <div class="logo-badge" style="background:#1E293B"><svg width="14" height="14" viewBox="0 0 20 20" fill="white"><rect x="2" y="2" width="7" height="7" rx="1"/><rect x="11" y="2" width="7" height="7" rx="1"/><rect x="2" y="11" width="7" height="7" rx="1"/><rect x="11" y="11" width="7" height="7" rx="1"/></svg></div>
+        Nexta Digital
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge" style="background:#475569"><svg width="14" height="14" viewBox="0 0 20 20" fill="white"><path d="M10 2L3 6v8l7 4 7-4V6L10 2z"/></svg></div>
+        PragaReal
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge" style="background:#0F172A"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M6 10h8M10 6v8" stroke="white" stroke-width="2"/></svg></div>
+        FlexMedia
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge" style="background:#111827"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="2"/></svg></div>
+        VitalGroup
+      </div>
+      <div class="logo-item">
+        <div class="logo-badge" style="background:#334155"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6" stroke="white" stroke-width="2"/></svg></div>
+        MetroWork
+      </div>
+      <!-- duplicate set for seamless loop -->
+      <div class="logo-item" aria-hidden="true">
+        <div class="logo-badge" style="background:#1E293B"><svg width="14" height="14" viewBox="0 0 20 20" fill="white"><rect x="2" y="2" width="7" height="7" rx="1"/><rect x="11" y="2" width="7" height="7" rx="1"/><rect x="2" y="11" width="7" height="7" rx="1"/><rect x="11" y="11" width="7" height="7" rx="1"/></svg></div>
+        Nexta Digital
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <div class="logo-badge" style="background:#475569"><svg width="14" height="14" viewBox="0 0 20 20" fill="white"><path d="M10 2L3 6v8l7 4 7-4V6L10 2z"/></svg></div>
+        PragaReal
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <div class="logo-badge" style="background:#0F172A"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M6 10h8M10 6v8" stroke="white" stroke-width="2"/></svg></div>
+        FlexMedia
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <div class="logo-badge" style="background:#111827"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="white" stroke-width="2"/></svg></div>
+        VitalGroup
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <div class="logo-badge" style="background:#334155"><svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="6" stroke="white" stroke-width="2"/></svg></div>
+        MetroWork
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES sekce odstraněna, obsah sloučen do USE CASES níže --><div style="display:none">
+
+      <!-- BC-1: AI Recepční (hero feature) -->
+      <div class="bento-card bc-1">
+        <div class="bc-1-flex">
+          <div class="bc-1-info">
+            <div class="bento-svc-icon" style="background:#EEF2FF">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 8a9 9 0 0118 0" stroke="#5B5CF6" stroke-width="2"/><rect x="3" y="8" width="3" height="6" rx="1.5" fill="#5B5CF6"/><rect x="18" y="8" width="3" height="6" rx="1.5" fill="#5B5CF6"/><path d="M21 14v2a4 4 0 01-4 4h-2" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="bento-eyebrow">AI Recepční</div>
+            <h3>Telefon zvedá AI. Zní jako člověk.</h3>
+            <p>Volajícímu odpoví přirozeným hlasem, domluví termín a zapíše ho do kalendáře — klient si ani nevšimne, že nemluví s recepční z masa a kostí.</p>
+            <div class="ai-trust-row">
+              <div class="ai-trust-pill">🎙️ Přirozený hlas</div>
+              <div class="ai-trust-pill">🧠 Rozumí dotazu</div>
+              <div class="ai-trust-pill">📅 Zapíše termín</div>
+            </div>
+          </div>
+          <div class="ai-call-card">
+            <div class="ai-call-hdr">
+              <div class="ai-call-avatar">KM</div>
+              <div>
+                <div class="ai-call-name">Klára Müllerová</div>
+                <div class="ai-call-status"><span class="ai-call-dot"></span>Hovor probíhá</div>
+              </div>
+              <div class="ai-call-timer">00:14</div>
+            </div>
+            <div class="ai-waveform">
+              <div class="ai-wave-bar" style="height:16px;animation-delay:0s"></div>
+              <div class="ai-wave-bar" style="height:28px;animation-delay:.05s"></div>
+              <div class="ai-wave-bar" style="height:38px;animation-delay:.1s"></div>
+              <div class="ai-wave-bar" style="height:20px;animation-delay:.15s"></div>
+              <div class="ai-wave-bar" style="height:34px;animation-delay:.2s"></div>
+              <div class="ai-wave-bar" style="height:12px;animation-delay:.25s"></div>
+              <div class="ai-wave-bar" style="height:40px;animation-delay:.3s"></div>
+              <div class="ai-wave-bar" style="height:24px;animation-delay:.35s"></div>
+              <div class="ai-wave-bar" style="height:30px;animation-delay:.4s"></div>
+              <div class="ai-wave-bar" style="height:18px;animation-delay:.45s"></div>
+              <div class="ai-wave-bar" style="height:36px;animation-delay:.5s"></div>
+              <div class="ai-wave-bar" style="height:22px;animation-delay:.55s"></div>
+              <div class="ai-wave-bar" style="height:14px;animation-delay:.6s"></div>
+              <div class="ai-wave-bar" style="height:32px;animation-delay:.65s"></div>
+              <div class="ai-wave-bar" style="height:26px;animation-delay:.7s"></div>
+              <div class="ai-wave-bar" style="height:40px;animation-delay:.75s"></div>
+              <div class="ai-wave-bar" style="height:18px;animation-delay:.8s"></div>
+              <div class="ai-wave-bar" style="height:30px;animation-delay:.85s"></div>
+              <div class="ai-wave-bar" style="height:22px;animation-delay:.9s"></div>
+              <div class="ai-wave-bar" style="height:16px;animation-delay:.95s"></div>
+            </div>
+            <div class="ai-transcript">
+              <div class="ai-tline ai-tline-ai"><b>AI recepční:</b> Dobrý den, Salon Bella, jak vám mohu pomoci?</div>
+              <div class="ai-tline ai-tline-caller"><b>Klára:</b> Potřebovala bych termín na střihání…</div>
+              <div class="ai-tline ai-tline-ai"><b>AI recepční:</b> Mám volno zítra v 14:00, vyhovuje?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BC-2: AI Automatizace -->
+      <div class="bento-card bc-2">
+        <div class="bento-svc-icon" style="background:#EFF6FF">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.5" fill="#3B82F6"/><circle cx="19" cy="6" r="2.5" fill="#3B82F6"/><circle cx="19" cy="18" r="2.5" fill="#3B82F6"/><path d="M7.5 12h7M16.5 6l-1 .7M16.5 18l-1-.7" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="bento-eyebrow">AI Automatizace</div>
+        <h3>Zákazník jde celou cestou sám — vy jen podepíšete</h3>
+        <p>Follow-upy, SMS připomínky a e-mailové sekvence, které vedou zákazníka od prvního dotazu až k platbě. Bez vaší účasti.</p>
+        <div class="bento-flow">
+          <div class="bf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M17 14.2c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5-.1-.2-.6-1.5-.9-2.1-.2-.5-.5-.5-.7-.5h-.5c-.2 0-.5.1-.8.4s-1 1-1 2.5c0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.4.2-.6.2-1.2.1-1.4z" fill="white"/></svg></div>
+          <span class="bf-arrow">→</span>
+          <div class="bf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#EA4335"/><rect x="5.5" y="8.5" width="13" height="8" rx="1" fill="white"/><path d="M5.5 8.5l6.5 5 6.5-5" stroke="#EA4335" stroke-width="1.3" fill="none"/></svg></div>
+          <span class="bf-arrow">→</span>
+          <div class="bf-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#4285F4"/><rect x="6.5" y="8.5" width="11" height="9" rx="1.5" fill="white"/><path d="M9 7v3M15 7v3" stroke="white" stroke-width="1.4" stroke-linecap="round"/><rect x="8.5" y="13" width="2" height="1.8" rx=".3" fill="#34A853"/><rect x="11" y="13" width="2" height="1.8" rx=".3" fill="#FBBC04"/></svg></div>
+          <span class="bf-arrow">→</span>
+          <div class="bf-icon" style="background:#DCFCE7;border-color:rgba(22,163,74,.2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#16A34A" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+        <div class="bento-list">
+          <div class="bento-list-item"><div class="bento-list-dot"></div>Automatické follow-upy po nezodpovězené zprávě</div>
+          <div class="bento-list-item"><div class="bento-list-dot"></div>SMS připomínky termínů a schůzek</div>
+          <div class="bento-list-item"><div class="bento-list-dot"></div>Celá sekvence nastavena 1× — funguje napořád</div>
+        </div>
+      </div>
+
+      <!-- BC-4: Stats -->
+      <div class="bento-card bc-4 bc-dots" style="display:flex;flex-direction:column">
+        <div class="bento-eyebrow">Výsledky v číslech</div>
+        <div class="bento-giant">47<sup>s</sup></div>
+        <p>průměrná reakční doba na příchozí dotaz zákazníka</p>
+        <div class="bento-stat-grid">
+          <div class="bsg-cell">
+            <div class="bsg-num">24/7</div>
+            <div class="bsg-lbl">dostupnost</div>
+          </div>
+          <div class="bsg-cell">
+            <div class="bsg-num">1 200+</div>
+            <div class="bsg-lbl">leadů / měsíc</div>
+          </div>
+          <div class="bsg-cell">
+            <div class="bsg-num">0</div>
+            <div class="bsg-lbl">propuštěných</div>
+          </div>
+          <div class="bsg-cell">
+            <div class="bsg-num">365</div>
+            <div class="bsg-lbl">dní v roce</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BC-3: Reaktivační systém -->
+      <div class="bento-card bc-3">
+        <div class="bento-svc-icon" style="background:#F0FDF4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8" stroke="#16A34A" stroke-width="2" stroke-linecap="round"/><path d="M20 4v4h-4M4 20v-4h4" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="bento-eyebrow">Reaktivační lead systém</div>
+        <h3>Stará databáze = nevytěžená zlatá dolina</h3>
+        <p>Kontakty z minulých kampaní, co neodpověděly? Reaktivujeme je cílenými sekvencemi SMS a e-mailů — část je připravena koupit právě teď.</p>
+        <div class="bc3-list">
+          <div class="bc3-row" style="background:#fff">
+            <div class="bc3-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div>
+            <span class="bc3-name">Martin Kovář</span>
+            <span class="bc3-tag bc3-sleep">Neaktivní 45 dní</span>
+          </div>
+          <div class="bc3-row" style="background:#fff">
+            <div class="bc3-av" style="background:linear-gradient(135deg,#f093fb,#f5576c)">JH</div>
+            <span class="bc3-name">Jana Horáčková</span>
+            <span class="bc3-tag bc3-sleep">Neaktivní 67 dní</span>
+          </div>
+          <div class="bc3-row" style="background:#F0FDF4">
+            <div class="bc3-av" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">LD</div>
+            <span class="bc3-name">Lucie Dvořáková</span>
+            <span class="bc3-tag bc3-active">Reaktivována ✓</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+<!-- ══════════ USE CASES ══════════ -->
+<section class="section usecases" id="about">
+  <div class="container">
+
+    <div class="uc-intro fade-up">
+      <h2 class="section-title">Proměňte zmeškané hovory<br>v platící zákazníky pomocí AI</h2>
+      <p class="section-sub">Nainstalujeme vám automatizovaný systém, který okamžitě odpovídá zákazníkům, reaktivuje vaši starou databázi a zastoupí recepční. Pracuje 24/7, nechce výplatu a nikdy nespí.</p>
+    </div>
+
+    <!-- Tab bar -->
+    <div class="uc2-tabbar fade-up">
+      <button class="uc2-tab active" onclick="switchUcTab(0,this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8a9 9 0 0118 0"/><rect x="3" y="8" width="3" height="6" rx="1.5" fill="currentColor"/><rect x="18" y="8" width="3" height="6" rx="1.5" fill="currentColor"/></svg>
+        AI Recepční
+      </button>
+      <button class="uc2-tab" onclick="switchUcTab(1,this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h8M17 6l-1 .8M17 18l-1-.8"/></svg>
+        AI Automatizace
+      </button>
+      <button class="uc2-tab" onclick="switchUcTab(2,this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>
+        Reaktivace databáze
+      </button>
+      <button class="uc2-tab" onclick="switchUcTab(3,this)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.61 3.47 2 2 0 013.59 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Missed Call Text-Back
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="uc2-panels fade-up">
+
+      <!-- Panel 0: AI Recepční -->
+      <div class="uc2-panel active">
+        <div class="uc2-visual">
+          <div class="uc2-vlabel">Hovor probíhá · AI Recepční</div>
+          <div class="uc2-phone-hdr">
+            <div class="uc2-phone-av">KM</div>
+            <div>
+              <div class="uc2-phone-name">Klára Müllerová</div>
+              <div class="uc2-phone-status">
+                <span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block;animation:pulse-dot 2s ease infinite"></span>
+                Hovor probíhá · 00:32
+              </div>
+            </div>
+            <div style="margin-left:auto;background:#EEF2FF;border-radius:10px;padding:8px 14px;font-size:.72rem;font-weight:700;color:var(--primary)">AI Recepční</div>
+          </div>
+          <div class="uc2-waveform">
+            <div class="uc2-wave-bar" style="height:16px;animation-delay:0s"></div>
+            <div class="uc2-wave-bar" style="height:30px;animation-delay:.07s"></div>
+            <div class="uc2-wave-bar" style="height:22px;animation-delay:.14s"></div>
+            <div class="uc2-wave-bar" style="height:38px;animation-delay:.21s"></div>
+            <div class="uc2-wave-bar" style="height:14px;animation-delay:.28s"></div>
+            <div class="uc2-wave-bar" style="height:28px;animation-delay:.35s"></div>
+            <div class="uc2-wave-bar" style="height:20px;animation-delay:.42s"></div>
+            <div class="uc2-wave-bar" style="height:34px;animation-delay:.49s"></div>
+            <div class="uc2-wave-bar" style="height:18px;animation-delay:.56s"></div>
+            <div class="uc2-wave-bar" style="height:24px;animation-delay:.63s"></div>
+            <div class="uc2-wave-bar" style="height:32px;animation-delay:.70s"></div>
+            <div class="uc2-wave-bar" style="height:16px;animation-delay:.77s"></div>
+          </div>
+          <div class="uc2-transcript">
+            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Dobrý den, Salon Bella, jak vám mohu pomoci?</div>
+            <div class="uc2-tline uc2-tline-caller"><b>Klára:</b> Potřebovala bych termín na střihání, máte volno?</div>
+            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Samozřejmě! Mám volno zítra ve 14:00 nebo v pátek v 10:30. Co vám víc vyhovuje?</div>
+            <div class="uc2-tline uc2-tline-caller"><b>Klára:</b> Zítra ve 14, to bude fajn.</div>
+            <div class="uc2-tline uc2-tline-ai"><b>AI recepční:</b> Skvěle, Kláro! Termín je zarezervován. Pošleme vám SMS připomínku. Na shledanou!</div>
+          </div>
+        </div>
+        <div class="uc2-detail">
+          <div class="uc2-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M3 8a9 9 0 0118 0"/><rect x="3" y="8" width="3" height="6" rx="1.5" fill="var(--primary)"/><rect x="18" y="8" width="3" height="6" rx="1.5" fill="var(--primary)"/></svg>
+            AI Recepční
+          </div>
+          <h3>Telefon zvedá AI. Zní jako člověk.</h3>
+          <p>Volajícímu odpoví přirozeným hlasem, domluví termín a zapíše ho do kalendáře — klient si ani nevšimne, že nemluví s recepční z masa a kostí.</p>
+          <div class="uc2-checks">
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Přirozený hlasový AI
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Rozumí dotazu v češtině
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Zapíše termín do kalendáře
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              K dispozici 24 hodin denně
+            </div>
+          </div>
+          <div class="uc2-btns">
+            <a href="#demo" class="btn btn-primary">Vyzkoušet živě →</a>
+            <a href="#contact" class="btn btn-outline">Domluvit ukázku</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 1: AI Automatizace -->
+      <div class="uc2-panel">
+        <div class="uc2-visual">
+          <div class="uc2-vlabel">Automatizační sekvence · Aktivní</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding:16px;background:#F8FAFC;border-radius:14px;border:1px solid var(--border)">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#25D366"/><path d="M17 14.2c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.2-.2.3-.8.9-1 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5-.1-.2-.6-1.5-.9-2.1-.2-.5-.5-.5-.7-.5h-.5c-.2 0-.5.1-.8.4s-1 1-1 2.5c0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.4.2-.6.2-1.2.1-1.4z" fill="white"/></svg>
+              </div>
+              <span style="font-size:.6rem;color:var(--muted);font-weight:600">SMS</span>
+            </div>
+            <span style="color:#CBD5E1;font-size:.85rem">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#EA4335"/><rect x="5.5" y="8.5" width="13" height="8" rx="1" fill="white"/><path d="M5.5 8.5l6.5 5 6.5-5" stroke="#EA4335" stroke-width="1.3" fill="none"/></svg>
+              </div>
+              <span style="font-size:.6rem;color:var(--muted);font-weight:600">E-mail</span>
+            </div>
+            <span style="color:#CBD5E1;font-size:.85rem">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="width:42px;height:42px;border-radius:11px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.06)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#4285F4"/><rect x="6.5" y="8.5" width="11" height="9" rx="1.5" fill="white"/><path d="M9 7v3M15 7v3" stroke="white" stroke-width="1.4" stroke-linecap="round"/><rect x="8.5" y="13" width="2" height="1.8" rx=".3" fill="#34A853"/><rect x="11" y="13" width="2" height="1.8" rx=".3" fill="#FBBC04"/></svg>
+              </div>
+              <span style="font-size:.6rem;color:var(--muted);font-weight:600">Kalendář</span>
+            </div>
+            <span style="color:#CBD5E1;font-size:.85rem">→</span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="width:42px;height:42px;border-radius:11px;background:#DCFCE7;border:1px solid rgba(22,163,74,.2);display:flex;align-items:center;justify-content:center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#16A34A" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <span style="font-size:.6rem;color:#16A34A;font-weight:700">Hotovo</span>
+            </div>
+          </div>
+          <div style="font-size:.72rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Aktivní sekvence</div>
+          <div style="display:flex;flex-direction:column;gap:10px;flex:1">
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
+              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Follow-up po nezvednutém hovoru</div>
+                <div style="font-size:.7rem;color:var(--muted)">SMS → 30 min → E-mail → 2 dny</div>
+              </div>
+              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
+              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Připomínka termínu</div>
+                <div style="font-size:.7rem;color:var(--muted)">SMS 24h před · SMS 1h před</div>
+              </div>
+              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:#F8FAFC;border-radius:12px;border:1px solid var(--border)">
+              <div style="width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0"></div>
+              <div style="flex:1">
+                <div style="font-size:.82rem;font-weight:600;color:var(--dark)">Žádost o Google recenzi</div>
+                <div style="font-size:.7rem;color:var(--muted)">Po dokončené službě · automaticky</div>
+              </div>
+              <span style="font-size:.68rem;font-weight:700;color:#16A34A;background:#DCFCE7;padding:2px 8px;border-radius:20px">Aktivní</span>
+            </div>
+          </div>
+        </div>
+        <div class="uc2-detail">
+          <div class="uc2-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h8M17 6l-1 .8M17 18l-1-.8"/></svg>
+            AI Automatizace
+          </div>
+          <h3>Zákazník jde celou cestou sám. Vy jen podepíšete.</h3>
+          <p>Follow-upy, SMS připomínky a e-mailové sekvence vedou zákazníka od prvního dotazu až k platbě — bez vaší účasti.</p>
+          <div class="uc2-checks">
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Automatické follow-upy
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              SMS připomínky termínů
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Google recenze automaticky
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Nastavení 1× — funguje napořád
+            </div>
+          </div>
+          <div class="uc2-btns">
+            <a href="#contact" class="btn btn-primary">Spustit automatizaci →</a>
+            <a href="#pricing" class="btn btn-outline">Ceník</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Reaktivace databáze -->
+      <div class="uc2-panel">
+        <div class="uc2-visual">
+          <div class="uc2-vlabel">Kampaň odeslána · Stará databáze</div>
+          <div class="uc2-stat-hero">
+            <div class="uc2-stat-big">428</div>
+            <div class="uc2-stat-lbl">kontaktů osloveno jediným kliknutím</div>
+          </div>
+          <div class="uc2-stat-row">
+            <div class="uc2-stat-cell">
+              <div class="uc2-stat-num" style="color:#5B5CF6">96</div>
+              <div class="uc2-stat-sub">Odpovědí</div>
+            </div>
+            <div class="uc2-stat-cell">
+              <div class="uc2-stat-num" style="color:#16A34A">31</div>
+              <div class="uc2-stat-sub">Rezervací</div>
+            </div>
+            <div class="uc2-stat-cell">
+              <div class="uc2-stat-num">184k</div>
+              <div class="uc2-stat-sub">Kč tržby</div>
+            </div>
+          </div>
+          <div style="font-size:.78rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Reaktivovaní kontakty</div>
+          <div class="uc2-contact-row">
+            <div class="uc2-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div>
+            <span class="uc2-name">Martin Kovář</span>
+            <span class="uc2-badge uc2-badge-active">✓ Reagoval</span>
+          </div>
+          <div class="uc2-contact-row">
+            <div class="uc2-av" style="background:linear-gradient(135deg,#f093fb,#f5576c)">JH</div>
+            <span class="uc2-name">Jana Horáčková</span>
+            <span class="uc2-badge uc2-badge-sleep">Neaktivní 67d</span>
+          </div>
+          <div class="uc2-contact-row">
+            <div class="uc2-av" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">PL</div>
+            <span class="uc2-name">Petr Láska</span>
+            <span class="uc2-badge uc2-badge-active">✓ Rezervoval</span>
+          </div>
+        </div>
+        <div class="uc2-detail">
+          <div class="uc2-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M4 12a8 8 0 018-8M20 12a8 8 0 01-8 8"/><path d="M20 4v4h-4M4 20v-4h4"/></svg>
+            Reaktivace databáze
+          </div>
+          <h3>Sedíte na zlatém dole. Jen to nevíte.</h3>
+          <p>Máte stovky zákazníků, kteří nekoupili. Jeden klik a systém je osloví personalizovanou kampaní — část je připravena koupit právě teď.</p>
+          <div class="uc2-checks">
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              SMS + e-mail kampaně
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Personalizace pro každý kontakt
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Automatické follow-upy
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Přehled výsledků v reálném čase
+            </div>
+          </div>
+          <div class="uc2-btns">
+            <a href="#contact" class="btn btn-primary">Spustit kampaň →</a>
+            <a href="#pricing" class="btn btn-outline">Ceník</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Missed Call Text-Back -->
+      <div class="uc2-panel">
+        <div class="uc2-visual">
+          <div class="uc2-vlabel">Příchozí hovor · Právě teď</div>
+          <div class="uc2-call-row">
+            <div class="uc2-call-ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 8l-8 8M8 8l8 8" stroke="#DC2626" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="uc2-call-name">Zmeškaný hovor</div>
+              <div class="uc2-call-time">+420 777 123 456 · před 4 sekundami</div>
+            </div>
+            <div style="margin-left:auto;font-size:.72rem;font-weight:700;color:#DC2626;background:#FEE2E2;padding:3px 10px;border-radius:20px">Nezvednutý</div>
+          </div>
+          <div class="uc2-chat">
+            <div class="uc2-bubble uc2-bubble-user">Dobrý den, volal jsem kvůli rezervaci...</div>
+            <div class="uc2-bubble uc2-bubble-ai">Dobrý den! 👋 Momentálně se věnujeme klientům. Jak vám můžeme pomoci? Rádi vás zavoláme zpět nebo domluvíme termín.</div>
+            <div class="uc2-bubble uc2-bubble-user">Potřebuji termín na příští týden.</div>
+            <div class="uc2-bubble uc2-bubble-ai">Perfektní! Mám volno v úterý 14:00 nebo ve čtvrtek 10:30 — co vám lépe sedí?</div>
+          </div>
+          <div class="uc2-speed">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#16A34A"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Automatická odpověď odeslána za 4 sekundy
+          </div>
+        </div>
+        <div class="uc2-detail">
+          <div class="uc2-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--primary)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Missed Call Text-Back
+          </div>
+          <h3>Váš zákazník nebude čekat. Nakoupí u konkurence.</h3>
+          <p>62 % hovorů do malých firem zůstane nezvednutých. Náš systém okamžitě zahájí SMS konverzaci — zákazník nekončí u konkurence.</p>
+          <div class="uc2-checks">
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Odpověď do 8 sekund
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Obsluha 24/7
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Domluví termín sám
+            </div>
+            <div class="uc2-check">
+              <svg class="uc2-check-ico" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#5B5CF6" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="#5B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Nastavení do 5 dní
+            </div>
+          </div>
+          <div class="uc2-btns">
+            <a href="#demo" class="btn btn-primary">Živé demo →</a>
+            <a href="#contact" class="btn btn-outline">Více informací</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /uc2-panels -->
+
+  </div>
+</section>
+
+<!-- ══════════ INTEGRATIONS ══════════ -->
+<section class="section integrations">
+  <div class="section-bg"></div>
+  <div class="section-scrim"></div>
+  <!-- Mraky -->
+  <svg class="cloud-svg" style="left:-70px;top:4%;width:500px;opacity:0.45;filter:blur(5px);position:absolute;pointer-events:none" viewBox="0 0 500 165" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="95" cy="122" rx="88" ry="56"/><ellipse cx="198" cy="100" rx="108" ry="74"/><ellipse cx="308" cy="108" rx="98" ry="68"/><ellipse cx="408" cy="120" rx="86" ry="55"/><ellipse cx="150" cy="80" rx="84" ry="66"/><ellipse cx="255" cy="74" rx="92" ry="68"/><ellipse cx="355" cy="84" rx="82" ry="62"/><rect x="7" y="120" width="486" height="45"/>
+  </svg>
+  <svg class="cloud-svg" style="right:-55px;top:8%;width:420px;opacity:0.38;filter:blur(4px);position:absolute;pointer-events:none" viewBox="0 0 420 145" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="84" cy="107" rx="76" ry="50"/><ellipse cx="176" cy="88" rx="92" ry="65"/><ellipse cx="272" cy="94" rx="84" ry="58"/><ellipse cx="358" cy="105" rx="74" ry="48"/><ellipse cx="130" cy="69" rx="74" ry="58"/><ellipse cx="225" cy="63" rx="80" ry="60"/><ellipse cx="315" cy="73" rx="70" ry="54"/><rect x="8" y="105" width="404" height="40"/>
+  </svg>
+  <svg class="cloud-svg" style="left:-110px;bottom:8%;width:580px;opacity:0.32;filter:blur(7px);position:absolute;pointer-events:none" viewBox="0 0 580 178" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="112" cy="134" rx="102" ry="66"/><ellipse cx="230" cy="110" rx="124" ry="86"/><ellipse cx="352" cy="118" rx="114" ry="78"/><ellipse cx="468" cy="132" rx="100" ry="64"/><ellipse cx="174" cy="88" rx="98" ry="76"/><ellipse cx="295" cy="82" rx="108" ry="78"/><ellipse cx="412" cy="92" rx="95" ry="72"/><rect x="10" y="132" width="560" height="46"/>
+  </svg>
+  <svg class="cloud-svg" style="right:-90px;bottom:2%;width:520px;opacity:0.35;filter:blur(6px);position:absolute;pointer-events:none" viewBox="0 0 520 162" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="100" cy="120" rx="92" ry="60"/><ellipse cx="208" cy="100" rx="112" ry="78"/><ellipse cx="320" cy="107" rx="102" ry="70"/><ellipse cx="422" cy="118" rx="90" ry="58"/><ellipse cx="158" cy="79" rx="92" ry="73"/><ellipse cx="267" cy="73" rx="100" ry="74"/><ellipse cx="370" cy="83" rx="88" ry="66"/><rect x="8" y="118" width="504" height="44"/>
+  </svg>
+  <div class="container" style="position:relative;z-index:3">
+    <div class="text-center fade-up">
+      <h2 class="section-title">Propojíme se s nástroji,<br>které už máte</h2>
+      <p class="section-sub text-center">Váš web, kalendář, WhatsApp, Instagram nebo CRM — napojíme Shieldex na vaše stávající procesy. Nic neměníte, nic nerušíte.</p>
+    </div>
+    <div class="int-orbit-wrap fade-up">
+      <div class="int-orbit-glow"></div>
+      <div class="int-ring int-ring-outer"></div>
+      <div class="int-ring int-ring-inner"></div>
+      <!-- Vnější orbit (r=150): GHL nahoře, po směru hodinových ručiček -->
+      <!-- GoHighLevel -->
+      <div class="int-oi" style="top:12px;left:162px" title="GoHighLevel">
+        <svg width="36" height="36" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#FF6B35"/>
+        <path d="M17 7.5L8.5 13v2h2.5v10.5h4.5v-5.5h3v5.5H23V15H25.5v-2L17 7.5z" fill="white"/>
+        </svg>
+      </div>
+      <!-- WhatsApp -->
+      <div class="int-oi" style="top:116px;left:305px" title="WhatsApp">
+        <svg width="36" height="36" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#25D366"/>
+        <path d="M17 6.5C11.2 6.5 6.5 11.2 6.5 17c0 1.9.5 3.7 1.4 5.3L6.5 27.5l5.4-1.4c1.5.8 3.2 1.3 5.1 1.3 5.8 0 10.5-4.7 10.5-10.5S22.8 6.5 17 6.5zm5.5 14.8c-.2.6-1.3 1.2-1.8 1.3-.5.1-1 .1-1.5-.1-.3-.1-.8-.3-1.4-.5-2.4-1-4-3.3-4.1-3.5-.1-.2-1.1-1.4-1.1-2.7s.7-1.9 1-2.2c.2-.3.5-.3.6-.3h.5c.2 0 .3 0 .5.4.2.4.6 1.5.7 1.6.1.1.1.3 0 .5-.1.1-.2.3-.3.4-.1.1-.3.3-.2.5.5.9 1.2 1.6 2 2.1.3.2.5.1.7-.1.2-.2.6-.7.8-.9.2-.2.3-.2.5-.1l1.7.8c.2.1.3.2.4.2.1.2.1.8-.1 1.5z" fill="white"/>
+        </svg>
+      </div>
+      <!-- Facebook -->
+      <div class="int-oi" style="top:283px;left:250px" title="Facebook">
+        <svg width="36" height="36" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#1877F2"/>
+        <path d="M20 8.5h-2.5C15.6 8.5 14 10.1 14 12v2.5h-2.5V18H14v8.5h3.5V18h2.5l.5-3.5H17.5V12.5c0-.6.4-1 1-1H20V8.5z" fill="white"/>
+        </svg>
+      </div>
+      <!-- Stripe -->
+      <div class="int-oi" style="top:283px;left:74px" title="Stripe">
+        <svg width="36" height="36" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#635BFF"/>
+        <path d="M15.5 13c0-.9.8-1.3 2-1.3 1.8 0 3.7.5 5.1 1.3V9c-1.6-.6-3.3-1-5.1-1C13.8 8 11 10.2 11 13.8c0 5.6 7.7 4.7 7.7 7.1 0 1-.9 1.4-2.1 1.4-1.8 0-4-.7-5.8-1.8v4.5c2 .9 4 1.3 5.8 1.3 4.3 0 7.3-2.1 7.3-5.8C23.9 14.6 15.5 15.4 15.5 13z" fill="white"/>
+        </svg>
+      </div>
+      <!-- Zapier -->
+      <div class="int-oi" style="top:116px;left:19px" title="Zapier">
+        <svg width="36" height="36" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#FF4A00"/>
+        <path d="M8.5 10.5h17v3L13.5 21H25.5v2.5H8.5V21l12-7.5H8.5z" fill="white"/>
+        </svg>
+      </div>
+      <!-- Vnitřní orbit (r=95): 4 ikony na diagonálách -->
+      <!-- Google Calendar -->
+      <div class="int-oi int-oi-sm" style="top:100px;left:234px" title="Google Calendar">
+        <svg width="26" height="26" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#fff"/>
+        <rect x="8" y="10" width="18" height="16" rx="2" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+        <path d="M8 14h18" stroke="#DADADA" stroke-width="1"/>
+        <path d="M12 8v4M22 8v4" stroke="#EA4335" stroke-width="2" stroke-linecap="round"/>
+        <text x="17" y="24" text-anchor="middle" fill="#1A73E8" font-size="8" font-weight="700" font-family="Arial">31</text>
+        <rect x="8" y="10" width="18" height="4" rx="2" fill="#4285F4"/>
+        <path d="M8 14h18" stroke="#4285F4" stroke-width=".5"/>
+        </svg>
+      </div>
+      <!-- Gmail -->
+      <div class="int-oi int-oi-sm" style="top:234px;left:234px" title="Gmail">
+        <svg width="26" height="26" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="#fff"/>
+        <path d="M6 11.5v12h4.5v-8l6.5 4.5 6.5-4.5v8H28v-12l-11 7.5L6 11.5z" fill="#EA4335"/>
+        <path d="M6 11.5h22" stroke="#FBBC04" stroke-width="0"/>
+        <path d="M6 11.5L17 19l11-7.5" fill="#C5221F"/>
+        </svg>
+      </div>
+      <!-- Instagram -->
+      <div class="int-oi int-oi-sm" style="top:234px;left:100px" title="Instagram">
+        <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
+          <defs><radialGradient id="igs" cx="30%" cy="100%" r="130%"><stop offset="0%" stop-color="#FFDD55"/><stop offset="25%" stop-color="#FF543E"/><stop offset="65%" stop-color="#C837AB"/><stop offset="100%" stop-color="#6559CA"/></radialGradient></defs>
+          <circle cx="17" cy="17" r="17" fill="url(#igs)"/>
+          <rect x="10" y="10" width="14" height="14" rx="4" stroke="white" stroke-width="1.8" fill="none"/>
+          <circle cx="17" cy="17" r="4" stroke="white" stroke-width="1.8" fill="none"/>
+          <circle cx="22.2" cy="11.8" r="1.2" fill="white"/>
+        </svg>
+      </div>
+      <!-- Google -->
+      <div class="int-oi int-oi-sm" style="top:100px;left:100px" title="Google">
+        <svg width="26" height="26" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="17" fill="white"/>
+        <path d="M26.5 17.2c0-.7-.1-1.4-.2-2H17v3.8h5.3c-.2 1.2-.9 2.2-2 2.9v2.4h3.2c1.9-1.7 3-4.3 3-7.1z" fill="#4285F4"/>
+        <path d="M17 27c2.7 0 4.9-.9 6.6-2.4l-3.2-2.4c-.9.6-2 .9-3.3.9-2.6 0-4.8-1.7-5.5-4.1H8.1v2.5C9.8 24.8 13.2 27 17 27z" fill="#34A853"/>
+        <path d="M11.4 19c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2v-2.5H8.2C7.4 14.1 7 15.5 7 17s.4 2.9 1.2 4.1l3.2-2.1z" fill="#FBBC05"/>
+        <path d="M17 10.9c1.5 0 2.8.5 3.8 1.5l2.8-2.8C21.9 7.9 19.7 7 17 7c-3.8 0-7.2 2.2-8.8 5.5l3.2 2.5c.8-2.4 3-4.1 5.6-4.1z" fill="#EA4335"/>
+        </svg>
+      </div>
+      <!-- Střed: logo Shieldex -->
+      <div class="int-center">
+        <img src="logo-cropped.png" alt="Shieldex" style="height:36px;width:auto;object-fit:contain;padding:2px">
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="#contact" class="btn btn-primary btn-lg">Domluvit napojení</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRICING ══════════ -->
+<section class="section pricing" id="pricing">
+  <div class="container">
+    <div class="text-center fade-up">
+      <h2 class="section-title">Správa za vás — transparentní<br>cena, žádné překvapení</h2>
+      <p class="section-sub text-center">Nekupujete software. Kupujete fungující systém, který za vás provozujeme a optimalizujeme. Vy jen přijímáte zákazníky.</p>
+      <div class="pricing-toggle">
+        <button class="ptog active" onclick="setToggle(this,'monthly')">Měsíčně</button>
+        <button class="ptog" onclick="setToggle(this,'annually')">Ročně <span class="pdiscount">-20%</span></button>
+      </div>
+    </div>
+    <div class="pricing-grid fade-up">
+      <!-- Záchrana -->
+      <div class="price-card">
+        <div class="price-tier">Záchrana</div>
+        <div class="price-desc">Přestanete ztrácet leady po pracovní době</div>
+        <div class="price-val"><span class="price-amount" data-monthly="4 890" data-annually="3 890">4 890</span></div>
+        <div class="price-period">Kč / měsíc · vše řešíme my</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>AI chatbot na váš web — odpovídá 24/7 místo vás</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Automatická odpověď na e-mailové poptávky</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>SMS notifikace vašemu týmu o každém novém leadu</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Vedení evidence kontaktů v CRM (děláme za vás)</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Nastavení do 5 pracovních dní bez vaší technické práce</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Měsíční report — co přišlo, co odepsalo, co se konvertovalo</span></div>
+          <div class="pf off"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D1D5DB" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>AI recepční na příchozí hovory</span></div>
+          <div class="pf off"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#D1D5DB" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Aktivní follow-upy přes SMS a WhatsApp</span></div>
+        </div>
+        <div class="price-cta"><a href="#contact" class="btn btn-outline">Mám zájem</a></div>
+      </div>
+      <!-- Business (featured) -->
+      <div class="price-card featured">
+        <div class="price-popular">Doporučujeme</div>
+        <div class="price-tier" style="color:var(--primary)">Business</div>
+        <div class="price-desc">Žádný lead neodejde bez reakce — ani v noci, ani o víkendu</div>
+        <div class="price-val"><span class="price-amount" data-monthly="6 990" data-annually="5 590">6 990</span></div>
+        <div class="price-period">Kč / měsíc · vše řešíme my</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Vše ze Záchranného plánu</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>AI recepční — přijímáme hovory za vás (24/7, 365 dní)</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Automatický follow-up do 5 minut od každé poptávky</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>SMS & WhatsApp sekvence pro nové leady (nastavujeme my)</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Automatická rezervace termínů do vašeho kalendáře</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Reaktivace vychládajících leadů z aktuálních kampaní</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Měsíční optimalizace od našeho specialisty</span></div>
+        </div>
+        <div class="price-cta"><a href="#contact" class="btn btn-primary">Chci Business plán</a></div>
+      </div>
+      <!-- Dominance -->
+      <div class="price-card">
+        <div class="price-tier">Dominance</div>
+        <div class="price-desc">Probudíme staré leady a postavíme celý prodejní stroj</div>
+        <div class="price-val"><span class="price-amount" data-monthly="9 900" data-annually="7 900">9 900</span></div>
+        <div class="price-period">Kč / měsíc · vše řešíme my</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Vše z Business plánu</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Reaktivace historické databáze kontaktů (SMS + e-mail)</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Kampaně pro opakované zákazníky a upsell</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Automatizace sběru recenzí (Google, Facebook)</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Napojení na váš rezervační nebo fakturační systém</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Dedikovaný specialista na váš účet</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Podpora 7 dní v týdnu</span></div>
+        </div>
+        <div class="price-cta"><a href="#contact" class="btn btn-outline">Mám zájem</a></div>
+      </div>
+      <!-- Enterprise -->
+      <div class="price-card">
+        <div class="price-tier">Na míru</div>
+        <div class="price-desc">Pro firmy s více pobočkami nebo specifickými potřebami</div>
+        <div class="price-val"><span class="price-amount custom">Individuální</span></div>
+        <div class="price-period" style="visibility:hidden">–</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Vše z Dominance plánu</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Audit a mapa stávajících prodejních procesů</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Automatizace na míru pro váš konkrétní byznys</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Napojení na jakýkoli software, který používáte</span></div>
+          <div class="pf"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5B5CF6" stroke-width="2"><circle cx="8" cy="8" r="7"/><path d="M5 8l2 2 4-4"/></svg><span>Dedikovaný tým, SLA a pravidelné reporty</span></div>
+        </div>
+        <div class="price-cta"><a href="#contact" class="btn btn-outline">Domluvit schůzku</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="section faq" id="contact">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="fade-up">
+        <h2 class="section-title">Časté dotazy</h2>
+        <div class="faq-contact-card">
+          <div class="faq-contact-avs">
+            <div class="faq-av" style="background:linear-gradient(135deg,#667eea,#764ba2)">MK</div>
+            <div class="faq-av" style="background:linear-gradient(135deg,#f5576c,#f093fb);margin-left:-12px">JH</div>
+          </div>
+          <p>Máte další otázky? Náš tým je vám k dispozici a rád pomůže s výběrem správného řešení pro váš byznys.</p>
+          <a href="mailto:info@shieldex.cz" class="btn btn-primary">Kontaktovat nás</a>
+        </div>
+      </div>
+      <div class="faq-items fade-up">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Musím si kupovat nějaký software nebo licence?<div class="faq-icon">+</div></div>
+          <div class="faq-a">Ne. Shieldex je kompletní managed service — vše provozujeme my na naší infrastruktuře. Žádné licence, žádné přístupy, žádná technická práce z vaší strany. Dostanete výsledky, ne příručku k obsluze.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Jak rychle systém začne fungovat?<div class="faq-icon">+</div></div>
+          <div class="faq-a">Typicky do 5 pracovních dní od podpisu smlouvy. Provedeme onboarding call (cca 60 minut), kde se dozvíme vše o vašem byznysu, a pak vše nastavíme a spustíme sami. Vy neděláte nic technického.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Musím mít nový web nebo měnit ten stávající?<div class="faq-icon">+</div></div>
+          <div class="faq-a">Vůbec ne. Chatbot a formuláře napojíme na váš současný web jedním řádkem kódu, který vložíme za vás. Nic neměníte, nic neplatíte navíc za web. Funguje na WordPressu, Wix, Webflow, Shopify — kdekoliv.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Přivedete mi víc zákazníků z internetu?<div class="faq-icon">+</div></div>
+          <div class="faq-a">Nezajišťujeme reklamy ani SEO — to je věc vaší agentury nebo vás. My zajistíme, že žádný zákazník, který už k vám přijde (z reklamy, webu, Googlu), neodejde bez odpovědi. Zvyšujeme konverzi z leadů, které už máte.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Co když to nebudu chtít dál?<div class="faq-icon">+</div></div>
+          <div class="faq-a">Na měsíčním tarifu žádné závazky — odejdete kdykoli bez sankcí. Na ročním vám vrátíme poměrnou část zbývajících měsíců. Nikdo vás nedrží silou, ale většina klientů zůstane, protože vidí čísla.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-section">
+  <div class="section-bg"></div>
+  <div class="section-scrim"></div>
+  <div style="position:relative;z-index:3" class="fade-up">
+    <h2>Každý den bez Shieldexu jsou<br>leady, které šly ke konkurenci.</h2>
+    <p>Nastavíme vše za vás do 5 dní. Bez technické práce, bez starostí — jen víc zákazníků z reklam, které už platíte.</p>
+    <div class="cta-btns">
+      <a href="#pricing" class="btn btn-primary btn-lg">Zastavit únik leadů →</a>
+      <a href="#contact" class="btn btn-outline btn-lg">Domluvit bezplatnou konzultaci</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" style="display:inline-flex;margin-bottom:.75rem">
+          <img src="logo-cropped.png" alt="Shieldex" style="height:56px;width:auto;object-fit:contain">
+        </a>
+        <p>Flexibilní AI platforma navržená pro podnikatele, kteří chtějí automatizovat komunikaci, spravovat zákazníky a škálovat svůj byznys bez přijímání nových lidí.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produkt</h4>
+        <a href="#">Domů</a>
+        <a href="#features">Funkce</a>
+        <a href="#pricing">Ceník</a>
+        <a href="#">Využití</a>
+      </div>
+      <div class="footer-col">
+        <h4>Společnost</h4>
+        <a href="#">O nás</a>
+        <a href="#contact">Kontakt</a>
+        <a href="#">Ochrana soukromí</a>
+        <a href="#">Obchodní podmínky</a>
+      </div>
+      <div class="footer-col">
+        <h4>Sociální sítě</h4>
+        <a href="#">LinkedIn</a>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Shieldex. Všechna práva vyhrazena.</p>
+      <div class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        Zpět nahoru
+        <div class="back-top-btn">↑</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Use Cases tabs
+function switchUcTab(idx, btn) {
+  document.querySelectorAll('.uc2-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.uc2-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.uc2-panel')[idx].classList.add('active');
+}
+
+// FAQ accordion
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// Pricing toggle
+function setToggle(btn, mode) {
+  document.querySelectorAll('.ptog').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.price-amount[data-monthly]').forEach(el => {
+    el.textContent = mode === 'annually' ? el.dataset.annually : el.dataset.monthly;
+  });
+}
+
+// Number counter animation
+function animateCounter(el, target, duration = 1200) {
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    el.textContent = Math.floor(progress * target).toLocaleString('cs-CZ');
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+</script>
+</body>
+</html>
